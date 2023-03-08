@@ -17,7 +17,7 @@ describe("Given a userReducer", () => {
     test("Then it should return the user with its isLogged property set to true", () => {
       const testUser: User = {
         username: "Victor",
-        id: "123456qwerty",
+        id: "papapapa",
         token: "qwerty123456",
       };
       const expectedUserState: UserState = {
