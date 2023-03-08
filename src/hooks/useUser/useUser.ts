@@ -1,6 +1,5 @@
 import decodeToken from "jwt-decode";
 import { useAppDispatch } from "../../store/hooks";
-import { useNavigate } from "react-router-dom";
 import useToken from "../useToken/useToken";
 import { CustomTokenPayload, LoginResponse, UserCredentials } from "./types";
 import { User } from "../../features/usersSlice/types";
@@ -8,6 +7,11 @@ import {
   loginUserActionCreator,
   logoutUserActionCreator,
 } from "../../features/usersSlice/usersSlice";
+import {
+  LoginErrorModal,
+  LoginSuccessModal,
+  LogoutSuccessModal,
+} from "../../modals/modals";
 
 interface UseUserStructure {
   loginUser: (userCredentials: UserCredentials) => Promise<void>;
@@ -17,7 +21,6 @@ interface UseUserStructure {
 const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();
   const { removeToken } = useToken();
-  const navigate = useNavigate();
 
   const apiUrl = process.env.REACT_APP_URL_API;
   const usersEndpoint = "users/";
@@ -46,14 +49,16 @@ const useUser = (): UseUserStructure => {
 
       localStorage.setItem("token", token);
 
-      navigate("/");
-    } catch (error) {}
+      LoginSuccessModal();
+    } catch (error) {
+      LoginErrorModal();
+    }
   };
 
   const logoutUser = () => {
     removeToken();
     dispatch(logoutUserActionCreator());
-    navigate("login");
+    LogoutSuccessModal();
   };
 
   return { loginUser, logoutUser };
