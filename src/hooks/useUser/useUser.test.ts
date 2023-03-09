@@ -1,19 +1,32 @@
 import decodeToken from "jwt-decode";
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 import Wrapper from "../../mocks/Wrapper";
 import useUser from "./useUser";
-import { CustomTokenPayload, UserCredentials } from "./types";
-import { store } from "../../store/store";
-import { User } from "../../store/features/users/usersSlice/types";
+import { CustomTokenPayload } from "./types";
+import {
+  UserCredentials,
+  UserState,
+} from "../../store/features/users/usersSlice/types";
 import { loginUserActionCreator } from "../../store/features/users/usersSlice/usersSlice";
+import { server } from "../../mocks/server";
 
 beforeAll(() => {
   jest.clearAllMocks();
+  server.listen();
 });
 
-jest.mock("jwt-decode", () => jest.fn());
+afterAll(() => {
+  server.close();
+});
 
-const spy = jest.spyOn(store, "dispatch");
+const mockDispatcher = jest.fn();
+
+jest.mock("../../store/hooks", () => ({
+  ...jest.requireActual("../../store/hooks"),
+  useAppDispatch: () => mockDispatcher,
+}));
+
+jest.mock("jwt-decode", () => jest.fn());
 
 const userCredentials: UserCredentials = {
   username: "victor",
@@ -23,9 +36,10 @@ const userCredentials: UserCredentials = {
 const mockTokenPayload: CustomTokenPayload = {
   id: "qwerty12345",
   username: "victor",
+  email: "victorgranda@gmail.com",
 };
 
-const mockToken = "qwerty12345victorgranda";
+const mockToken = "mockedToken";
 
 describe("Given a useUser custom Hook", () => {
   describe("When its loginUser function is called", () => {
@@ -40,15 +54,17 @@ describe("Given a useUser custom Hook", () => {
         mockTokenPayload
       );
 
-      const mockLoginUser: User = {
-        id: mockTokenPayload.id,
+      const mockedUser: UserState = {
         token: mockToken,
         username: mockTokenPayload.username,
+        isLogged: false,
       };
 
-      await loginUser(userCredentials);
+      await act(async () => loginUser(userCredentials));
 
-      expect(spy).toHaveBeenCalledWith(loginUserActionCreator(mockLoginUser));
+      expect(mockDispatcher).toHaveBeenCalledWith(
+        loginUserActionCreator(mockedUser)
+      );
     });
   });
 });
