@@ -3,7 +3,6 @@ import { User, UserState } from "./types";
 
 const initialState: UserState = {
   username: "",
-  id: "",
   token: "",
   isLogged: false,
 };
@@ -15,7 +14,6 @@ export const userSlice = createSlice({
     loginUser: (currentUserState, action: PayloadAction<User>): UserState => ({
       ...currentUserState,
       username: action.payload.username,
-      id: action.payload.id,
       token: action.payload.token,
       isLogged: true,
     }),

@@ -7,7 +7,6 @@ import {
 
 const initialUserState: UserState = {
   username: "",
-  id: "",
   token: "",
   isLogged: false,
 };
@@ -17,7 +16,6 @@ describe("Given a userReducer", () => {
     test("Then it should return the user with its isLogged property set to true", () => {
       const testUser: User = {
         username: "Victor",
-        id: "123456qwertyklkj",
         token: "qwerty123456",
       };
       const expectedUserState: UserState = {
