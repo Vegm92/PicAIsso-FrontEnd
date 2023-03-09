@@ -15,21 +15,21 @@ const GlobalStyles = createGlobalStyle`
 }
 
 body {
-   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    min-height: 100vh;
-    margin: 0;
-    font-family: "roboto", sans-serif;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "roboto", sans-serif;
+}
 
 input {
   outline: none;
   background-color: none;
 }
 ul, li, ol {
-list-style: none;
+  list-style: none;
 }
 `;
 

@@ -51,11 +51,13 @@
     ]
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.26",
     "husky": "^8.0.0",
     "jwt-decode": "^3.1.2",
     "lint-staged": "^13.1.2",
     "msw": "^1.1.0",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.4",
+    "styled-components": "^5.3.8"
   },
   "jest": {
     "collectCoverageFrom": [
