@@ -1,15 +1,17 @@
 import { JwtPayload } from "jwt-decode";
-
-export interface UserCredentials {
-  username: string;
-  password: string;
-}
+import { UserCredentials } from "../../store/features/users/usersSlice/types";
 
 export interface LoginResponse {
   token: string;
 }
 
 export interface CustomTokenPayload extends JwtPayload {
-  sub: string;
+  id: string;
+  email: string;
   username: string;
+}
+
+export interface UseUserStructure {
+  loginUser: (userCredentials: UserCredentials) => Promise<void>;
+  logoutUser: () => void;
 }
