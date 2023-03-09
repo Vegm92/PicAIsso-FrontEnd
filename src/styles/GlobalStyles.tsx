@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import "@fontsource/kanit";
 
 const GlobalStyles = createGlobalStyle`
 *,
@@ -11,17 +12,17 @@ const GlobalStyles = createGlobalStyle`
   display: flex;
   justify-content: center;
   padding: 30px;
-
+  background-color: black;
 }
 
 body {
+  font-family: "kanit, roboto", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100vh;
   margin: 0;
-  font-family: "roboto", sans-serif;
 }
 
 input {

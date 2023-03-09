@@ -5,13 +5,14 @@ export const LoginFormStyled = styled.form`
   align-items: center;
   width: 1000px;
   height: 800px;
-  background-color: #2a282f;
-  color: #ffffff;
+  background-color: ${(props) => props.theme.colors.background};
+  color: ${(props) => props.theme.colors.text};
   text-align: center;
   border-radius: 35px;
-  box-shadow: 0px 0px 45px #541496;
+  box-shadow: ${(props) => props.theme.colors.shadow};
   justify-content: center;
   gap: 80px;
+  min-width: 550px;
 
   .form__tittle {
     font-size: 40px;
@@ -20,8 +21,9 @@ export const LoginFormStyled = styled.form`
   .input {
     &__password,
     &__email {
+      margin: 20px 0px;
       min-width: 500px;
-      background-color: white;
+      background-color: ${(props) => props.theme.colors.text};
       height: 80px;
       border-radius: 15px;
     }
@@ -29,11 +31,10 @@ export const LoginFormStyled = styled.form`
 
   .button__login {
     border-radius: 15px;
-    background-color: #541496;
     border: none;
     :hover {
-      box-shadow: 0px 0px 30px #541496;
-      background-color: #3c0e6b;
+      box-shadow: ${(props) => props.theme.colors.shadow};
+      background-color: ${(props) => props.theme.colors.button.loginForm};
     }
   }
 `;
