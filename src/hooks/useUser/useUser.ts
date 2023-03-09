@@ -2,16 +2,14 @@ import decodeToken from "jwt-decode";
 import { useAppDispatch } from "../../store/hooks";
 import useToken from "../useToken/useToken";
 import { CustomTokenPayload, LoginResponse, UserCredentials } from "./types";
-import { User } from "../../features/usersSlice/types";
+import { User } from "../../store/features/users/usersSlice/types";
 import {
   loginUserActionCreator,
   logoutUserActionCreator,
-} from "../../features/usersSlice/usersSlice";
-import {
-  LoginErrorModal,
-  LoginSuccessModal,
-  LogoutSuccessModal,
-} from "../../modals/modals";
+} from "../../store/features/users/usersSlice/usersSlice";
+import { LoginErrorModal } from "../../modals/LoginErrorModal";
+import { LoginSuccessModal } from "../../modals/LoginSuccessModal";
+import { LogoutSuccessModal } from "../../modals/LogoutSuccessModal";
 
 interface UseUserStructure {
   loginUser: (userCredentials: UserCredentials) => Promise<void>;
@@ -38,8 +36,11 @@ const useUser = (): UseUserStructure => {
       );
 
       const { token } = (await response.json()) as LoginResponse;
+
       const tokenPayload: CustomTokenPayload = decodeToken(token);
-      const { sub: id, username } = tokenPayload;
+
+      const { id, username } = tokenPayload;
+
       const logginUser: User = {
         username,
         token,

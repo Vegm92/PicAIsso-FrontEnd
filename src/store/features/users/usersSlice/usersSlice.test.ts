@@ -13,7 +13,7 @@ const initialUserState: UserState = {
 };
 
 describe("Given a userReducer", () => {
-  describe("When it receives the action to login the user", () => {
+  describe("When it receives an initial state and an action to login the user", () => {
     test("Then it should return the user with its isLogged property set to true", () => {
       const testUser: User = {
         username: "Victor",
@@ -33,8 +33,8 @@ describe("Given a userReducer", () => {
     });
   });
 
-  describe("When it receives the action to logout the user", () => {
-    test("Then it should return the users initial state", () => {
+  describe("When it receives an initial State and the action to logout the user", () => {
+    test("Then it should return the users initial state, with isLogged set to false", () => {
       const logoutUserAction = logoutUserActionCreator();
 
       const newUserState = userReducer(initialUserState, logoutUserAction);

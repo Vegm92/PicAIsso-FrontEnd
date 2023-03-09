@@ -10,6 +10,6 @@ export interface LoginResponse {
 }
 
 export interface CustomTokenPayload extends JwtPayload {
-  sub: string;
+  id: string;
   username: string;
 }
