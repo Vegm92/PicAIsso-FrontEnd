@@ -6,6 +6,7 @@ import {
   loginUserActionCreator,
   logoutUserActionCreator,
 } from "../../store/features/users/usersSlice/usersSlice";
+import { CustomToast } from "../../modals/CustomToast";
 import {
   UserCredentials,
   UserState,
@@ -14,28 +15,40 @@ import {
 const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();
   const { removeToken } = useToken();
+  const { addToast } = CustomToast();
 
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.REACT_APP_API_URL!;
   const usersEndpoint = "/users";
   const loginEndpoint = "/login";
 
   const loginUser = async (userCredentials: UserCredentials) => {
-    const response = await fetch(`${apiUrl}${usersEndpoint}${loginEndpoint}`, {
-      method: "POST",
-      body: JSON.stringify(userCredentials),
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const response = await fetch(
+        `${apiUrl}${usersEndpoint}${loginEndpoint}`,
+        {
+          method: "POST",
+          body: JSON.stringify(userCredentials),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-    const { token } = (await response.json()) as LoginResponse;
+      const { token } = (await response.json()) as LoginResponse;
 
-    const tokenPayload: CustomTokenPayload = decodeToken(token);
+      const tokenPayload: CustomTokenPayload = decodeToken(token);
 
-    const { username } = tokenPayload;
-    const logginUser: UserState = { token, username, isLogged: false };
+      const { username } = tokenPayload;
+      const logginUser: UserState = { token, username, isLogged: false };
 
-    dispatch(loginUserActionCreator(logginUser));
+      dispatch(loginUserActionCreator(logginUser));
 
-    localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
+    } catch {
+      addToast(
+        "Invalid credentials",
+        "There was something wrong with your login",
+        "error"
+      );
+    }
   };
 
   const logoutUser = () => {

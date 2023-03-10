@@ -7,6 +7,7 @@ import { LoginFormStyled } from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
+
   const initialLoginState: UserCredentials = {
     email: "",
     password: "",
