@@ -1,23 +1,13 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import theme, { picAissoTheme } from "../../styles/themes";
+import { screen } from "@testing-library/react";
+import renderWithProviders from "../../testUtils";
 import LoginForm from "./LoginForm";
 
 describe("Given a LoginForm component", () => {
-  const chakraProvider = (
-    <ThemeProvider theme={theme}>
-      <ChakraProvider theme={picAissoTheme}>
-        <LoginForm />
-      </ChakraProvider>
-    </ThemeProvider>
-  );
-
   describe("When rendered", () => {
     test("Then it should show an input with placeholder 'Email'", () => {
       const inputPlaceholder = "Email";
 
-      render(chakraProvider);
+      renderWithProviders(<LoginForm />);
       const emailInput = screen.getByPlaceholderText(inputPlaceholder);
 
       expect(emailInput).toBeInTheDocument();
@@ -26,7 +16,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show an input with placeholder 'Password'", () => {
       const inputPlaceholder = "Password";
 
-      render(chakraProvider);
+      renderWithProviders(<LoginForm />);
 
       const passwordInput = screen.getByPlaceholderText(inputPlaceholder);
 
@@ -36,7 +26,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show a button with text 'Login'", () => {
       const buttonText = "Login";
 
-      render(chakraProvider);
+      renderWithProviders(<LoginForm />);
 
       const submitButton = screen.getByRole("button", { name: buttonText });
 
