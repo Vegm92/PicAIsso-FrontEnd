@@ -29,7 +29,7 @@ jest.mock("../../store/hooks", () => ({
 jest.mock("jwt-decode", () => jest.fn());
 
 const userCredentials: UserCredentials = {
-  username: "victor",
+  email: "victor@gmail.com",
   password: "patatafrita",
 };
 
