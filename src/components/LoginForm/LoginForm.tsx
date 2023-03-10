@@ -53,7 +53,6 @@ const LoginForm = (): JSX.Element => {
             placeholder="Password"
             type={"password"}
             size="lg"
-            id={"field-:r2:"}
             onChange={handleChange}
           ></Input>
 
