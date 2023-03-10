@@ -1,18 +1,31 @@
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Box, Button, Flex, Input, Link, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
+import useUser from "../../hooks/useUser/useUser";
+import { UserCredentials } from "../../store/features/users/usersSlice/types";
 import { LoginFormStyled } from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
-  const [input, setInput] = useState("");
+  const { loginUser } = useUser();
+  const initialLoginState: UserCredentials = {
+    email: "",
+    password: "",
+  };
+  const [input, setInput] = useState(initialLoginState);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setInput(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setInput({ ...input, [event.target.id]: event.target.value });
 
-  const isError = input === "";
+  const handleSubmit = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    await loginUser(input);
+    setInput(initialLoginState);
+  };
+
+  const isError = input.email === "" || input.password === "";
 
   return (
-    <LoginFormStyled className="login-form">
+    <LoginFormStyled className="login-form" onSubmit={handleSubmit}>
       <Box maxW={"500px"} fontSize="2xl">
         <Text
           className="login-form__tittle"
@@ -26,9 +39,12 @@ const LoginForm = (): JSX.Element => {
           <Input
             className="input__email"
             type="email"
+            id="email"
+            autoFocus
             placeholder="Email"
-            value={input}
-            onChange={handleInputChange}
+            onChange={handleChange}
+            value={input.email}
+            isRequired
           />
 
           <FormLabel className="label__password"></FormLabel>
@@ -38,6 +54,7 @@ const LoginForm = (): JSX.Element => {
             type={"password"}
             size="lg"
             id={"field-:r2:"}
+            onChange={handleChange}
           ></Input>
 
           <Flex direction={"column"}>
