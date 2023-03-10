@@ -3,12 +3,12 @@ import { act, renderHook } from "@testing-library/react";
 import Wrapper from "../../mocks/Wrapper";
 import useUser from "./useUser";
 import { CustomTokenPayload } from "./types";
+import { loginUserActionCreator } from "../../store/features/users/usersSlice/usersSlice";
+import { server } from "../../mocks/server";
 import {
   UserCredentials,
   UserState,
 } from "../../store/features/users/usersSlice/types";
-import { loginUserActionCreator } from "../../store/features/users/usersSlice/usersSlice";
-import { server } from "../../mocks/server";
 
 beforeAll(() => {
   jest.clearAllMocks();
@@ -17,6 +17,7 @@ beforeAll(() => {
 
 afterAll(() => {
   server.close();
+  jest.clearAllMocks();
 });
 
 const mockDispatcher = jest.fn();
@@ -35,14 +36,14 @@ const userCredentials: UserCredentials = {
 
 const mockTokenPayload: CustomTokenPayload = {
   id: "qwerty12345",
+  email: "victor@gmail.com",
   username: "victor",
-  email: "victorgranda@gmail.com",
 };
 
 const mockToken = "mockedToken";
 
 describe("Given a useUser custom Hook", () => {
-  describe("When its loginUser function is called", () => {
+  describe("When its loginUser function is called with the email 'victor@gmail.com' and the password 'patatasfritas'", () => {
     test("Then it should call the dispatch with the loginUser Action creator", async () => {
       const {
         result: {
