@@ -18,6 +18,9 @@ body {
   font-family: "kanit, roboto, sans-serif";
   min-height: 100vh;
   margin: 0;
+  background: "#101010",
+
+;
 }
 
 input {

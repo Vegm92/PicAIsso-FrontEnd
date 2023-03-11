@@ -33,6 +33,9 @@ const HeaderStyled = styled.header`
       gap: 40px;
     }
   }
+  .link {
+    text-decoration: none;
+  }
 `;
 
 export default HeaderStyled;
