@@ -1,7 +1,7 @@
 import { act, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { UserCredentials } from "../../store/features/users/usersSlice/types";
-import renderWithProviders from "../../testUtils";
+import { renderRouterWithProviders } from "../../testUtils/testUtils";
 import LoginForm from "./LoginForm";
 
 const mockedLoginUser = jest.fn();
@@ -15,7 +15,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show an input with placeholder 'Email'", () => {
       const inputPlaceholder = "Email";
 
-      renderWithProviders(<LoginForm />);
+      renderRouterWithProviders(<LoginForm />);
       const emailInput = screen.getByPlaceholderText(inputPlaceholder);
 
       expect(emailInput).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show an input with placeholder 'Password'", () => {
       const inputPlaceholder = "Password";
 
-      renderWithProviders(<LoginForm />);
+      renderRouterWithProviders(<LoginForm />);
 
       const passwordInput = screen.getByPlaceholderText(inputPlaceholder);
 
@@ -34,7 +34,7 @@ describe("Given a LoginForm component", () => {
     test("Then it should show a button with text 'Login'", () => {
       const buttonText = "Login";
 
-      renderWithProviders(<LoginForm />);
+      renderRouterWithProviders(<LoginForm />);
 
       const submitButton = screen.getByRole("button", { name: buttonText });
 
@@ -49,7 +49,7 @@ describe("Given a LoginForm component", () => {
         password: "vic123456",
       };
 
-      renderWithProviders(<LoginForm />);
+      renderRouterWithProviders(<LoginForm />);
 
       const submitButtonContent = "Login";
 
