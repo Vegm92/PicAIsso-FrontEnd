@@ -1,7 +1,7 @@
-import LoginForm from "./components/LoginForm/LoginForm";
+import Login from "./pages/Login/Login";
 
 const App = (): JSX.Element => {
-  return <LoginForm />;
+  return <Login />;
 };
 
 export default App;
