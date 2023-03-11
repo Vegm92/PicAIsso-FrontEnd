@@ -3,24 +3,23 @@ export const LoginFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 380px;
+  width: 90vw;
   height: 380px;
   background-color: ${(props) => props.theme.colors.background};
   color: ${(props) => props.theme.colors.text};
   text-align: center;
-  border-radius: 35px;
+  border-radius: 20px;
   box-shadow: ${(props) => props.theme.colors.shadow};
   justify-content: center;
   gap: 80px;
   min-width: 320px;
+  max-width: 500px;
 
   .input {
     &__password,
     &__email {
       margin: 10px 0px;
-      width: 80%;
       background-color: ${(props) => props.theme.colors.text};
-      height: 35px;
     }
   }
 

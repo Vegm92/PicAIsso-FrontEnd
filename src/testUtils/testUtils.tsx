@@ -7,7 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { RouterProvider } from "react-router-dom";
 import theme, { picAissoTheme } from "../styles/themes";
 import { RootState, setupStore, store } from "../store";
-import { getComponentRouter, router } from "../routers/routers";
+import { getComponentRouter, router } from "../routers/router";
 
 export const renderWithProviders = (
   ui: React.ReactElement,

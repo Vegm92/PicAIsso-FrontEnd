@@ -1,4 +1,5 @@
-import { Button, Divider, Link, Flex, Spacer } from "@chakra-ui/react";
+import { Button, Divider, Flex, Spacer } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
 import HeaderStyled from "./HeaderStyled";
 
@@ -44,14 +45,24 @@ const Header = (): JSX.Element => {
 
       {isLogged ? (
         <nav className="main-header__navigation">
-          <Link className="link__Home">Home</Link>
-          <Link className="link__Create">Create</Link>
-          <Link className="link__MyCollection">My Collection</Link>
+          <NavLink to="/" className="link__Home">
+            Home
+          </NavLink>
+          <NavLink to="/createPage" className="link__Create">
+            Create
+          </NavLink>
+          <NavLink to="/myCollection" className="link__MyCollection">
+            My Collection
+          </NavLink>
         </nav>
       ) : (
         <nav className="main-header__navigation">
-          <Link className="link__Home">Home</Link>
-          <Link className="link__Create">Create</Link>
+          <NavLink to="/" className="link__Home">
+            Home
+          </NavLink>
+          <NavLink to="/createPage" className="link__Create">
+            Create
+          </NavLink>
         </nav>
       )}
     </HeaderStyled>

@@ -6,6 +6,7 @@ import LoginStyled from "./LoginStyled";
 
 const Login = (): JSX.Element => {
   const { isLogged } = useAppSelector((state) => state.user);
+
   return isLogged ? (
     <Navigate to={"/"} replace={true} />
   ) : (

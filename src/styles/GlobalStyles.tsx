@@ -10,13 +10,17 @@ const GlobalStyles = createGlobalStyle`
 
 #root {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 body {
   font-family: "kanit, roboto, sans-serif";
   min-height: 100vh;
   margin: 0;
+  background: "#101010",
+
+;
 }
 
 input {
