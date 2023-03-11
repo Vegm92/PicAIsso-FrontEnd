@@ -1,11 +1,11 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../testUtils/testUtils";
+import { renderRouterWithProviders } from "../testUtils/testUtils";
 import App from "./App";
 
 describe("Given an App component", () => {
   describe("When it is rendered", () => {
     test("Then it should show a navbar", () => {
-      renderWithProviders(<App />);
+      renderRouterWithProviders(<App />);
 
       const expectedHeader = screen.getByRole("navigation");
 
@@ -13,7 +13,7 @@ describe("Given an App component", () => {
     });
 
     test("Then it should show a navigation bar", () => {
-      renderWithProviders(<App />);
+      renderRouterWithProviders(<App />);
 
       const expextedNavigationBar = screen.getByRole("navigation");
 
@@ -23,7 +23,7 @@ describe("Given an App component", () => {
     test("Then it should show a button with text 'Login'", () => {
       const buttonText = "Login";
 
-      renderWithProviders(<App />);
+      renderRouterWithProviders(<App />);
 
       const submitButton = screen.getByRole("button", { name: buttonText });
 

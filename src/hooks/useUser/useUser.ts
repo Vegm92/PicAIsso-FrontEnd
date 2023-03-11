@@ -40,7 +40,7 @@ const useUser = (): UseUserStructure => {
       const logginUser: UserState = { token, username, isLogged: false };
 
       dispatch(loginUserActionCreator(logginUser));
-
+      addToast("Wellcome!", "Login successfull", "success");
       localStorage.setItem("token", token);
     } catch {
       addToast(
