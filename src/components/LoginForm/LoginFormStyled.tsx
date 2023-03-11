@@ -3,8 +3,8 @@ export const LoginFormStyled = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1000px;
-  height: 800px;
+  width: 380px;
+  height: 380px;
   background-color: ${(props) => props.theme.colors.background};
   color: ${(props) => props.theme.colors.text};
   text-align: center;
@@ -12,25 +12,19 @@ export const LoginFormStyled = styled.form`
   box-shadow: ${(props) => props.theme.colors.shadow};
   justify-content: center;
   gap: 80px;
-  min-width: 550px;
-
-  .form__tittle {
-    font-size: 40px;
-  }
+  min-width: 320px;
 
   .input {
     &__password,
     &__email {
-      margin: 20px 0px;
-      min-width: 500px;
+      margin: 10px 0px;
+      width: 80%;
       background-color: ${(props) => props.theme.colors.text};
-      height: 80px;
-      border-radius: 15px;
+      height: 35px;
     }
   }
 
   .button__login {
-    border-radius: 15px;
     border: none;
     :hover {
       box-shadow: ${(props) => props.theme.colors.shadow};

@@ -27,15 +27,15 @@ const LoginForm = (): JSX.Element => {
 
   return (
     <LoginFormStyled className="login-form" onSubmit={handleSubmit}>
-      <Box maxW={"500px"} fontSize="2xl">
+      <Box>
         <Text
           className="login-form__tittle"
           fontWeight={"medium"}
-          fontSize={"5xl"}
+          fontSize={"2xl"}
         >
           Login to PicAIsso
         </Text>
-        <FormControl isInvalid={isError} mt="40px" fontSize={"large"}>
+        <FormControl isInvalid={isError} fontSize={"small"}>
           <FormLabel className="label__email"></FormLabel>
           <Input
             className="input__email"
@@ -57,15 +57,15 @@ const LoginForm = (): JSX.Element => {
             onChange={handleChange}
           ></Input>
 
-          <Flex direction={"column"}>
+          <Flex direction={"column"} w={"auto"}>
             <Button
               className="button__login"
-              mt={4}
-              h="80px"
+              mt={1}
+              h="35px"
               color="picAisso.text"
               backgroundColor={"picAisso.button.loginForm"}
               type="submit"
-              fontSize="4xl"
+              fontSize="2xl"
             >
               Login
             </Button>

@@ -11,8 +11,6 @@ const GlobalStyles = createGlobalStyle`
 #root {
   display: flex;
   justify-content: center;
-  padding: 30px;
-  background-color: black;
 }
 
 body {
