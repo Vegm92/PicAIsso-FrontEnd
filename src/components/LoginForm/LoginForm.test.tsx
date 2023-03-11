@@ -1,7 +1,7 @@
 import { act, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { UserCredentials } from "../../store/features/users/usersSlice/types";
-import renderWithProviders from "../../testUtils";
+import { renderWithProviders } from "../../testUtils";
 import LoginForm from "./LoginForm";
 
 const mockedLoginUser = jest.fn();

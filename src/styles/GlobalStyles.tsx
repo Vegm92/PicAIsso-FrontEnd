@@ -14,11 +14,7 @@ const GlobalStyles = createGlobalStyle`
 }
 
 body {
-  font-family: "kanit, roboto", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
+  font-family: "kanit, roboto, sans-serif";
   min-height: 100vh;
   margin: 0;
 }
