@@ -9,6 +9,7 @@ declare module "styled-components" {
       textLink1: string;
       textLink2: string;
       shadow: string;
+      imgShadow: string;
       button: {
         loginForm: string;
         login: string;

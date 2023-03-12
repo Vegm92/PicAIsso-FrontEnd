@@ -23,8 +23,6 @@ const Card = ({ image }: CardProps): JSX.Element => {
         {image.title}
       </Heading>
       <Image
-        w={"95%"}
-        h={"auto"}
         src={image.image}
         alt={image.title}
         className="card__image"
