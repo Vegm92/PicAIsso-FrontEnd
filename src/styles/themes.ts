@@ -10,6 +10,7 @@ export const colors = {
     textLink1: "#1E79D1",
     textLink2: "#8C53FF",
     shadow: "0px 0px 45px #541496",
+    imgShadow: "0px 0px 45px #541496",
     button: {
       loginForm: "rgba(84, 20, 150, 0.93)",
       login: "linear-gradient(94deg, #C764EC 0%, #4A36B1 100%)",
@@ -27,6 +28,7 @@ const theme: DefaultTheme = {
     textLink1: "#57ABFA",
     textLink2: "#8C53FF",
     shadow: "0px 0px 45px #541496",
+    imgShadow: "0px 0px 15px #541496",
     button: {
       loginForm: "rgba(84, 20, 150, 0.93)",
       login: "linear-gradient(94deg, #C764EC 0%, #4A36B1 100%)",
