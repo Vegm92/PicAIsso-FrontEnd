@@ -1,5 +1,5 @@
 import { JwtPayload } from "jwt-decode";
-import { UserCredentials } from "../../store/features/users/usersSlice/types";
+import { UserCredentials } from "../../types/userTypes";
 
 export interface LoginResponse {
   token: string;
