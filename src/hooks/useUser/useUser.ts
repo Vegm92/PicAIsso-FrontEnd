@@ -7,10 +7,7 @@ import {
   logoutUserActionCreator,
 } from "../../store/features/users/usersSlice/usersSlice";
 import { CustomToast } from "../../modals/CustomToast";
-import {
-  UserCredentials,
-  UserState,
-} from "../../store/features/users/usersSlice/types";
+import { UserCredentials, UserState } from "../../types/userTypes";
 
 const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();

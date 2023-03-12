@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UiState } from "./types";
+import { UiState } from "../../../types/uiTypes";
 
 const uiInitialState: UiState = {
   isLoading: false,

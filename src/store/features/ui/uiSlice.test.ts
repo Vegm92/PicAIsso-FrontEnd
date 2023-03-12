@@ -1,4 +1,4 @@
-import { UiState } from "./types";
+import { UiState } from "../../../types/uiTypes";
 import { uiReducer } from "./uiSlice";
 
 const defaultUiPayload: UiState = {

@@ -1,6 +1,6 @@
 import { act, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { UserCredentials } from "../../store/features/users/usersSlice/types";
+import { UserCredentials } from "../../types/userTypes";
 import { renderRouterWithProviders } from "../../testUtils/testUtils";
 import LoginForm from "./LoginForm";
 

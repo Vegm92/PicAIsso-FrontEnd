@@ -2,7 +2,7 @@ import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Box, Button, Flex, Input, Link, Text } from "@chakra-ui/react";
 import { SyntheticEvent, useState } from "react";
 import useUser from "../../hooks/useUser/useUser";
-import { UserCredentials } from "../../store/features/users/usersSlice/types";
+import { UserCredentials } from "../../types/userTypes";
 import { LoginFormStyled } from "./LoginFormStyled";
 
 const LoginForm = (): JSX.Element => {
