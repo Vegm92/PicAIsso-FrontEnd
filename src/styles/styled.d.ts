@@ -33,9 +33,5 @@ declare module "styled-components" {
       desktopBreakpoint: string;
       inputHeight: string;
     };
-
-    distances: {
-      inputLeftPadding: string;
-    };
   }
 }
