@@ -5,7 +5,7 @@ import { CustomTokenPayload, LoginResponse } from "./types";
 import {
   loginUserActionCreator,
   logoutUserActionCreator,
-} from "../../store/features/users/usersSlice/usersSlice";
+} from "../../store/features/users/usersSlice";
 import { CustomToast } from "../../modals/CustomToast";
 import { UserCredentials, UserState } from "../../types/userTypes";
 import {

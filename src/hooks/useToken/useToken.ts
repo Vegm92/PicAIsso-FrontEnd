@@ -1,6 +1,6 @@
 import decodeToken from "jwt-decode";
 import { useCallback } from "react";
-import { loginUserActionCreator } from "../../store/features/users/usersSlice/usersSlice";
+import { loginUserActionCreator } from "../../store/features/users/usersSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { CustomTokenPayload } from "../useUser/types";
 

@@ -6,7 +6,7 @@ import {
   combineReducers,
 } from "@reduxjs/toolkit";
 import { uiReducer } from "./features/ui/uiSlice";
-import { userReducer } from "./features/users/usersSlice/usersSlice";
+import { userReducer } from "./features/users/usersSlice";
 
 export const store = configureStore({
   reducer: {

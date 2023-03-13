@@ -7,6 +7,7 @@ const imageMock: ImageDataStructure = {
   description: "This is an abstract Chameleon",
   prompt: "Draw a colorfull abstract chameleon",
   image: `${img}`,
+  id: "qwert12345",
 };
 
 export default imageMock;

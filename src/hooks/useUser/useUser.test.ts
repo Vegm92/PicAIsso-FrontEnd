@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import Wrapper from "../../mocks/Wrapper";
 import useUser from "./useUser";
 import { CustomTokenPayload } from "./types";
-import { loginUserActionCreator } from "../../store/features/users/usersSlice/usersSlice";
+import { loginUserActionCreator } from "../../store/features/users/usersSlice";
 import { UserCredentials, UserState } from "../../types/userTypes";
 
 beforeAll(() => {
