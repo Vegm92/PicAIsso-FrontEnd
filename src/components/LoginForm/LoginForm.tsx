@@ -24,7 +24,6 @@ const LoginForm = (): JSX.Element => {
   };
 
   const isError = input.email === "" || input.password === "";
-
   return (
     <LoginFormStyled className="login-form" onSubmit={handleSubmit}>
       <Box>
@@ -52,7 +51,8 @@ const LoginForm = (): JSX.Element => {
           <Input
             className="input__password"
             placeholder="Password"
-            type={"password"}
+            type="password"
+            id="password"
             size="lg"
             onChange={handleChange}
           ></Input>

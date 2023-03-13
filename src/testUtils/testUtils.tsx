@@ -5,9 +5,10 @@ import { render } from "@testing-library/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ThemeProvider } from "styled-components";
 import { RouterProvider } from "react-router-dom";
-import theme, { picAissoTheme } from "../styles/themes";
+import theme from "../styles/themes";
 import { RootState, setupStore, store } from "../store";
 import { getComponentRouter, router } from "../routers/router";
+import { picAissoTheme } from "../styles/chakraUi";
 
 export const renderWithProviders = (
   ui: React.ReactElement,

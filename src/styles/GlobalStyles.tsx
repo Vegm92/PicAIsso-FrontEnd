@@ -29,6 +29,9 @@ input {
 ul, li, ol {
   list-style: none;
 }
+a, :visited, :active{
+  text-decoration: none;
+}
 `;
 
 export default GlobalStyles;

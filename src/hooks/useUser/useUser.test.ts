@@ -1,19 +1,16 @@
 import decodeToken from "jwt-decode";
-import { act, renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 import Wrapper from "../../mocks/Wrapper";
 import useUser from "./useUser";
 import { CustomTokenPayload } from "./types";
 import { loginUserActionCreator } from "../../store/features/users/usersSlice/usersSlice";
-import { server } from "../../mocks/server";
 import { UserCredentials, UserState } from "../../types/userTypes";
 
 beforeAll(() => {
   jest.clearAllMocks();
-  server.listen();
 });
 
 afterAll(() => {
-  server.close();
   jest.clearAllMocks();
 });
 
@@ -58,7 +55,7 @@ describe("Given a useUser custom Hook", () => {
         isLogged: false,
       };
 
-      await act(async () => loginUser(userCredentials));
+      await waitFor(() => loginUser(userCredentials));
 
       expect(mockDispatcher).toHaveBeenCalledWith(
         loginUserActionCreator(mockedUser)

@@ -1,5 +1,5 @@
 import { ImageDataStructure } from "../types/imagesTypes";
-import img from "../media/Chameleon_TradingCard.jpg";
+import img from "../media/Chameleon_TradingCard.webp";
 
 const imageMock: ImageDataStructure = {
   title: "Abstract Chameleon",
