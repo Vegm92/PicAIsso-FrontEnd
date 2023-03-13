@@ -25,9 +25,9 @@ const uiSlice = createSlice({
   },
 });
 
+export const uiReducer = uiSlice.reducer;
+
 export const {
   setIsLoading: setIsLoadingActionCreator,
   unsetIsLoading: unsetIsLoadingActionCreator,
 } = uiSlice.actions;
-
-export const uiReducer = uiSlice.reducer;

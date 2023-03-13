@@ -28,6 +28,7 @@ const LoginForm = (): JSX.Element => {
     <LoginFormStyled className="login-form" onSubmit={handleSubmit}>
       <Box>
         <Text
+          as={"p"}
           className="login-form__tittle"
           fontWeight={"medium"}
           fontSize={"2xl"}
