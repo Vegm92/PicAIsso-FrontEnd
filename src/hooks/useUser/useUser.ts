@@ -8,6 +8,10 @@ import {
 } from "../../store/features/users/usersSlice/usersSlice";
 import { CustomToast } from "../../modals/CustomToast";
 import { UserCredentials, UserState } from "../../types/userTypes";
+import {
+  setIsLoadingActionCreator,
+  unsetIsLoadingActionCreator,
+} from "../../store/features/ui/uiSlice";
 
 const useUser = (): UseUserStructure => {
   const dispatch = useAppDispatch();
@@ -21,6 +25,7 @@ const useUser = (): UseUserStructure => {
 
   const loginUser = async (userCredentials: UserCredentials) => {
     try {
+      dispatch(setIsLoadingActionCreator());
       const response = await fetch(
         `${apiUrl}${usersEndpoint}${loginEndpoint}`,
         {
@@ -41,10 +46,12 @@ const useUser = (): UseUserStructure => {
       const { username } = tokenPayload;
       const logginUser: UserState = { token, username, isLogged: false };
 
+      dispatch(unsetIsLoadingActionCreator());
       dispatch(loginUserActionCreator(logginUser));
       addToast("Wellcome!", "Login successfull", "success");
       localStorage.setItem("token", token);
     } catch (error) {
+      dispatch(unsetIsLoadingActionCreator());
       addToast(
         "Invalid credentials",
         "There was something wrong with your login",

@@ -12,7 +12,7 @@ export const LoginFormStyled = styled.form`
   box-shadow: ${(props) => props.theme.colors.shadow};
   justify-content: center;
   gap: 80px;
-  min-width: 320px;
+  min-width: 288px;
   max-width: 500px;
 
   .input {

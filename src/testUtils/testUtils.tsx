@@ -9,6 +9,7 @@ import theme from "../styles/themes";
 import { RootState, setupStore, store } from "../store";
 import { getComponentRouter, router } from "../routers/router";
 import { picAissoTheme } from "../styles/chakraUi";
+import GlobalStyles from "../styles/GlobalStyles";
 
 export const renderWithProviders = (
   ui: React.ReactElement,
@@ -19,6 +20,7 @@ export const renderWithProviders = (
     return (
       <Provider store={testStore}>
         <ThemeProvider theme={theme}>
+          <GlobalStyles></GlobalStyles>
           <ChakraProvider theme={picAissoTheme}>{children}</ChakraProvider>
         </ThemeProvider>
       </Provider>

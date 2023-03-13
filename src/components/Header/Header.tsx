@@ -1,10 +1,12 @@
 import { Button, Divider, Flex, Spacer } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../store/hooks";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
   const { isLogged } = useAppSelector((state) => state.user);
+  const { logoutUser } = useUser();
 
   return (
     <HeaderStyled className="main-header">
@@ -23,6 +25,7 @@ const Header = (): JSX.Element => {
             backgroundColor={"picAisso.button.login"}
             type="submit"
             fontSize="1xl"
+            onClick={logoutUser}
           >
             Logout
           </Button>
