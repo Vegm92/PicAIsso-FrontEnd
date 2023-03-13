@@ -11,30 +11,40 @@ const HeaderStyled = styled.header`
 
   .tittle {
     font-size: ${(props) => props.theme.fontSizes.bigTitleFontSize};
+    .main-header__link {
+      font-size: medium;
+      color: white;
+      align-self: flex-end;
+      margin-bottom: 6px;
+      border: 1px solid white;
+      padding: 8px;
+      border-radius: 8px;
+      background-color: ${(props) => props.theme.colors.button.loginForm};
+    }
   }
 
   span.ai {
     color: ${(props) => props.theme.colors.textLink2};
   }
 
-  .button__login {
+  [class*="button"] {
     border: none;
+    background-color: ${(props) => props.theme.colors.button.loginForm};
     :hover {
       box-shadow: ${(props) => props.theme.colors.shadow};
       background-color: ${(props) => props.theme.colors.button.loginForm};
     }
   }
 
-  .main-header {
-    &__navigation {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 40px;
+  .main-header__navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+
+    [class*="link"] {
+      color: white;
     }
-  }
-  .link {
-    text-decoration: none;
   }
 `;
 

@@ -13,13 +13,13 @@ describe("Given a Header component", () => {
       expect(expectedHeader).toBeInTheDocument();
     });
 
-    test("Then it should show a button with the text 'Login'", () => {
-      const buttonText = "Login";
+    test("Then it should show a link with the text 'Log in' if the user is not logged in", () => {
+      const Linktext = "Log in";
 
       renderRouterWithProviders(<Header />);
 
-      const expectedButton = screen.getByRole("button", {
-        name: buttonText,
+      const expectedButton = screen.getByRole("link", {
+        name: Linktext,
       });
 
       expect(expectedButton).toBeInTheDocument();

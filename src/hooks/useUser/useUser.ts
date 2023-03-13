@@ -1,7 +1,7 @@
 import decodeToken from "jwt-decode";
 import { useAppDispatch } from "../../store/hooks";
 import useToken from "../useToken/useToken";
-import { CustomTokenPayload, LoginResponse, UseUserStructure } from "./types";
+import { CustomTokenPayload, LoginResponse } from "./types";
 import {
   loginUserActionCreator,
   logoutUserActionCreator,
@@ -13,7 +13,7 @@ import {
   unsetIsLoadingActionCreator,
 } from "../../store/features/ui/uiSlice";
 
-const useUser = (): UseUserStructure => {
+const useUser = () => {
   const dispatch = useAppDispatch();
   const { removeToken } = useToken();
   const { addToast } = CustomToast();

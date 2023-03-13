@@ -1,5 +1,5 @@
-import { Button, Divider, Flex, Spacer } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { Divider, Flex, Spacer } from "@chakra-ui/react";
+import { Link, NavLink } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../store/hooks";
 import HeaderStyled from "./HeaderStyled";
@@ -15,32 +15,17 @@ const Header = (): JSX.Element => {
         <span className="tittle ai">AI</span>
         <span>sso</span>
         {/* <Heading color={"white"}>PicAIsso</Heading> */}
+
         <Spacer />
+
         {isLogged ? (
-          <Button
-            className="button__logout"
-            mt={1}
-            h="30px"
-            color="picAisso.text"
-            backgroundColor={"picAisso.button.login"}
-            type="submit"
-            fontSize="1xl"
-            onClick={logoutUser}
-          >
-            Logout
-          </Button>
+          <Link to="/" className="main-header__link" onClick={logoutUser}>
+            Log out
+          </Link>
         ) : (
-          <Button
-            className="button__login"
-            mt={1}
-            h="30px"
-            color="picAisso.text"
-            backgroundColor={"picAisso.button.loginForm"}
-            type="submit"
-            fontSize="1xl"
-          >
-            Login
-          </Button>
+          <Link to="/login" className="main-header__link">
+            Log in
+          </Link>
         )}
       </Flex>
 

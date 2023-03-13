@@ -20,14 +20,14 @@ describe("Given an App component", () => {
       expect(expextedNavigationBar).toBeInTheDocument();
     });
 
-    test("Then it should show a button with text 'Login'", () => {
-      const buttonText = "Login";
+    test("Then it should show a link with text 'Log in'", () => {
+      const linkText = "Log in";
 
       renderRouterWithProviders(<App />);
 
-      const submitButton = screen.getByRole("button", { name: buttonText });
+      const loginLink = screen.getByRole("link", { name: linkText });
 
-      expect(submitButton).toBeInTheDocument();
+      expect(loginLink).toBeInTheDocument();
     });
   });
 });

@@ -31,6 +31,7 @@ ul, li, ol {
 }
 a, :visited, :active{
   text-decoration: none;
+  
 }
 `;
 
