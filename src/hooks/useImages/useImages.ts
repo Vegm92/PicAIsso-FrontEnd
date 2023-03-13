@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { loadImagesActionCreator } from "../../store/features/images/imagesSlice";
 import {
   setIsLoadingActionCreator,
   unsetIsLoadingActionCreator,
@@ -32,7 +33,14 @@ const useImages = () => {
       }
 
       dispatch(unsetIsLoadingActionCreator());
-      dispatch(load);
-    } catch (error) {}
+      dispatch(loadImagesActionCreator(images));
+    } catch (error) {
+      dispatch(unsetIsLoadingActionCreator());
+      return (error as Error).message;
+    }
   }, [dispatch]);
+
+  return { getImages };
 };
+
+export default useImages;
