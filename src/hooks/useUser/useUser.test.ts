@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import Wrapper from "../../mocks/Wrapper";
 import useUser from "./useUser";
 import { CustomTokenPayload } from "./types";
-import { loginUserActionCreator } from "../../store/features/users/usersSlice";
+import { loginUserActionCreator } from "../../store/features/usersSlice/usersSlice";
 import { UserCredentials, UserState } from "../../types/userTypes";
 
 beforeAll(() => {
@@ -26,6 +26,7 @@ jest.mock("jwt-decode", () => jest.fn());
 const userCredentials: UserCredentials = {
   email: "victor@gmail.com",
   password: "patatafrita",
+  id: "123qewr",
 };
 
 const mockTokenPayload: CustomTokenPayload = {
@@ -51,8 +52,9 @@ describe("Given a useUser custom Hook", () => {
 
       const mockedUser: UserState = {
         token: mockToken,
-        username: mockTokenPayload.username,
+        email: mockTokenPayload.email,
         isLogged: false,
+        id: mockTokenPayload.id,
       };
 
       await waitFor(() => loginUser(userCredentials));

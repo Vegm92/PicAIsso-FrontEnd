@@ -1,9 +1,9 @@
 import { useCallback } from "react";
-import { loadImagesActionCreator } from "../../store/features/images/imagesSlice";
+import { loadImagesActionCreator } from "../../store/features/imagesSlice/imagesSlice";
 import {
   setIsLoadingActionCreator,
   unsetIsLoadingActionCreator,
-} from "../../store/features/ui/uiSlice";
+} from "../../store/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../store/hooks";
 import { ImagesData } from "../../types/imagesTypes";
 

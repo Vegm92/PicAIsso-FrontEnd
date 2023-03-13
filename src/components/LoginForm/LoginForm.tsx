@@ -9,6 +9,7 @@ const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
 
   const initialLoginState: UserCredentials = {
+    id: "",
     email: "",
     password: "",
   };
