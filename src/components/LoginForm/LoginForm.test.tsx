@@ -1,4 +1,4 @@
-import { act, screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { UserCredentials } from "../../types/userTypes";
 import { renderRouterWithProviders } from "../../testUtils/testUtils";
@@ -59,11 +59,13 @@ describe("Given a LoginForm component", () => {
         name: submitButtonContent,
       });
 
-      await act(async () => await userEvent.type(emailInput, mockUser.email));
-      await act(
+      await waitFor(
+        async () => await userEvent.type(emailInput, mockUser.email)
+      );
+      await waitFor(
         async () => await userEvent.type(passwordInput, mockUser.password)
       );
-      await act(async () => await userEvent.click(SubmitButton));
+      await waitFor(async () => await userEvent.click(SubmitButton));
 
       expect(mockedLoginUser).toHaveBeenCalled();
     });

@@ -14,7 +14,8 @@ const useUser = (): UseUserStructure => {
   const { removeToken } = useToken();
   const { addToast } = CustomToast();
 
-  const apiUrl = process.env.REACT_APP_URL_API!;
+  const apiUrl =
+    process.env.REACT_APP_URL_API! ?? process.env.REACT_APP_LOCALHOST_BACK!;
   const usersEndpoint = "/users";
   const loginEndpoint = "/login";
 
@@ -29,6 +30,10 @@ const useUser = (): UseUserStructure => {
         }
       );
 
+      if (!response) {
+        throw new Error();
+      }
+
       const { token } = (await response.json()) as LoginResponse;
 
       const tokenPayload: CustomTokenPayload = decodeToken(token);
@@ -39,7 +44,7 @@ const useUser = (): UseUserStructure => {
       dispatch(loginUserActionCreator(logginUser));
       addToast("Wellcome!", "Login successfull", "success");
       localStorage.setItem("token", token);
-    } catch {
+    } catch (error) {
       addToast(
         "Invalid credentials",
         "There was something wrong with your login",

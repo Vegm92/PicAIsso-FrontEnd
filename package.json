@@ -1,10 +1,11 @@
 {
-  "name": "victor-granda-final-project-front-202301-bcn",
+  "name": "picaisso-app",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
+    "@chakra-ui/theme-tools": "^2.0.17",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/kanit": "^4.5.10",

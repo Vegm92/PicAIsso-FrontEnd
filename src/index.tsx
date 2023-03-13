@@ -4,10 +4,11 @@ import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
 import { store } from "./store";
 import GlobalStyles from "./styles/GlobalStyles";
-import theme, { picAissoTheme } from "./styles/themes";
+import theme from "./styles/themes";
 import { ThemeProvider } from "styled-components";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routers/router";
+import { picAissoTheme } from "./styles/chakraUi";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);

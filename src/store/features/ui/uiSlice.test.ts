@@ -13,7 +13,7 @@ describe("Given a showLoader reducer", () => {
   describe("When it receives a previus stat with isLoading on false", () => {
     test("Then it should return the same state and isLoading on true", () => {
       const uiPayload = {
-        type: "ui/showLoader",
+        type: "ui/setIsLoading",
       };
 
       const expectedUiState: UiState = {
@@ -35,7 +35,7 @@ describe("Given a closeLoader reducer", () => {
   describe("When it receives a previous state with isLoading on true", () => {
     test("Then it should return the state with isLoading on false", () => {
       const uiPayload = {
-        type: "ui/closeLoader",
+        type: "ui/unsetIsLoading",
       };
 
       const expectedUiState: UiState = {
