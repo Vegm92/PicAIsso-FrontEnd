@@ -11,7 +11,6 @@ const Login = (): JSX.Element => {
     <Navigate to={"/"} replace={true} />
   ) : (
     <LoginStyled>
-      <h1 className="login__tittle">Log in</h1>
       <Box as="header" className="login">
         <LoginForm />
       </Box>

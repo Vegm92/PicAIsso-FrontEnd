@@ -1,7 +1,6 @@
 import { Divider, Flex, Spacer } from "@chakra-ui/react";
 import { Link, NavLink } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
-import Login from "../../pages/Login/Login";
 import { useAppSelector } from "../../store/hooks";
 import HeaderStyled from "./HeaderStyled";
 
