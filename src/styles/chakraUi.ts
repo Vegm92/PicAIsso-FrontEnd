@@ -16,6 +16,7 @@ const colors = {
     shadow: "0px 0px 45px #541496",
     imgShadow: "0px 0px 45px #541496",
     button: {
+      text: "#000000",
       loginForm: "#CC99FF",
       login: "linear-gradient(94deg, #C764EC 0%, #4A36B1 100%)",
       utilsButton: "#57ABFA",

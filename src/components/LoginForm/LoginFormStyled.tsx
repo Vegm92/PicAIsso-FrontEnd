@@ -25,6 +25,7 @@ export const LoginFormStyled = styled.form`
   }
 
   .button__login {
+    margin-top: 15px;
     border: none;
     :hover {
       box-shadow: ${(props) => props.theme.colors.shadow};
