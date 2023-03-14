@@ -20,7 +20,7 @@ export const renderWithProviders = (
     return (
       <Provider store={testStore}>
         <ThemeProvider theme={theme}>
-          <GlobalStyles></GlobalStyles>
+          <GlobalStyles />
           <ChakraProvider theme={picAissoTheme}>{children}</ChakraProvider>
         </ThemeProvider>
       </Provider>

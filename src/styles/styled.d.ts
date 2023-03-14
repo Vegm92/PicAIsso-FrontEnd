@@ -12,6 +12,7 @@ declare module "styled-components" {
       shadow: string;
       imgShadow: string;
       button: {
+        text: string;
         loginForm: string;
         login: string;
         utilsButton: string;
