@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { UiState } from "../../../types/uiTypes";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ModalPayload, UiState } from "../../../types/uiTypes";
 
 const initialState: UiState = {
   isLoading: false,
   feedback: {
     message: "",
     isSuccess: true,
+    isError: false,
   },
 };
 
@@ -22,12 +23,35 @@ const uiSlice = createSlice({
       ...currentState,
       isLoading: false,
     }),
+
+    openModal: (
+      currentUiState,
+      action: PayloadAction<ModalPayload>
+    ): UiState => ({
+      ...currentUiState,
+      feedback: {
+        isSuccess: action.payload.isSuccess,
+        message: action.payload.message,
+        isError: action.payload.isError,
+      },
+    }),
+
+    closeModal: (currentUiState): UiState => ({
+      ...currentUiState,
+      feedback: {
+        isSuccess: false,
+        message: initialState.feedback.message,
+        isError: false,
+      },
+    }),
   },
 });
-
-export const uiReducer = uiSlice.reducer;
 
 export const {
   setIsLoading: setIsLoadingActionCreator,
   unsetIsLoading: unsetIsLoadingActionCreator,
+  closeModal: closeModalActionCreator,
+  openModal: openModalActionCreator,
 } = uiSlice.actions;
+
+export const uiReducer = uiSlice.reducer;
