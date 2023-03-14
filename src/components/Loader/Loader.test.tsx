@@ -1,4 +1,4 @@
-import { renderWithProviders } from "../../testUtils/testUtils";
+import { renderRouterWithProviders } from "../../testUtils/testUtils";
 import Loader from "./Loader";
 import { screen } from "@testing-library/react";
 
@@ -7,7 +7,7 @@ describe("Given a Loader component", () => {
     test("Then it should show a loader with the aria-label attribute 'The page is loading'", () => {
       const labelText = "The page is loading";
 
-      renderWithProviders(<Loader />);
+      renderRouterWithProviders(<Loader />);
 
       const expectedLabel = screen.getByLabelText(labelText);
 

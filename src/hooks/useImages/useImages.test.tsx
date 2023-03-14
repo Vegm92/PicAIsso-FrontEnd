@@ -1,26 +1,53 @@
-import { imageMock, imageMockVariation } from "../../mocks/imageMock";
-import {
-  imagesReducer,
-  loadImagesActionCreator,
-} from "../../store/features/imagesSlice/imagesSlice";
-import { ImagesData, ImagesDataStructure } from "../../types/imagesTypes";
+import { renderHook } from "@testing-library/react";
+import { errorHandlers } from "../../mocks/handlers";
+import { mockImages } from "../../mocks/imageMock";
+import { server } from "../../mocks/server";
+import Wrapper from "../../mocks/Wrapper";
+import { store } from "../../store";
+import { loadImagesActionCreator } from "../../store/features/imagesSlice/imagesSlice";
+import useImages from "./useImages";
 
-const images: ImagesDataStructure = [imageMock, imageMockVariation];
-const initialImagesState: ImagesData = {
-  images: [],
-};
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
-describe("Given a users reducer", () => {
-  describe("When it receives a new state and the action to load events", () => {
-    test("Then it should return a list of 2 events", () => {
-      const loadImagesAction = loadImagesActionCreator(images);
-      const expectecImagesToRender: ImagesData = {
-        images: images,
-      };
+const spyDispatch = jest.spyOn(store, "dispatch");
 
-      const newImages = imagesReducer(initialImagesState, loadImagesAction);
+describe("Given a useImages custom hook", () => {
+  describe("When it is called", () => {
+    test("Then it should call the dispatch", async () => {
+      const {
+        result: {
+          current: { getImages },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
 
-      expect(newImages).toStrictEqual(expectecImagesToRender);
+      await getImages();
+
+      expect(spyDispatch).toHaveBeenCalledWith(
+        loadImagesActionCreator(mockImages.images)
+      );
+    });
+  });
+
+  describe("When the getImages function is called and the response from the request is failed", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
+
+    test("Then it should not call the dispatch", async () => {
+      const {
+        result: {
+          current: { getImages },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
+
+      await getImages();
+
+      expect(spyDispatch).not.toHaveBeenNthCalledWith(
+        2,
+        loadImagesActionCreator(mockImages.images)
+      );
     });
   });
 });
