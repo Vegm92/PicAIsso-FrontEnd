@@ -14,7 +14,6 @@ const Header = (): JSX.Element => {
         <span>Pic</span>
         <span className="tittle ai">AI</span>
         <span>sso</span>
-        {/* <Heading color={"white"}>PicAIsso</Heading> */}
 
         <Spacer />
 

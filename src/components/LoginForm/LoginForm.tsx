@@ -9,7 +9,6 @@ const LoginForm = (): JSX.Element => {
   const { loginUser } = useUser();
 
   const initialLoginState: UserCredentials = {
-    id: "",
     email: "",
     password: "",
   };
@@ -55,8 +54,8 @@ const LoginForm = (): JSX.Element => {
             placeholder="Password"
             type="password"
             id="password"
-            size="lg"
             onChange={handleChange}
+            value={input.password}
           ></Input>
 
           <Flex direction={"column"} w={"auto"}>
@@ -74,11 +73,15 @@ const LoginForm = (): JSX.Element => {
 
             <Text mt={4}>
               Forgot your password?{" "}
-              <Link color={"picAisso.textLink1"}>Click here</Link>
+              <Link href="/login" color={"picAisso.textLink1"}>
+                Click here
+              </Link>
             </Text>
             <Text>
               Don't have an account yet?{" "}
-              <Link color={"picAisso.textLink2"}>Sign up here</Link>
+              <Link href="/login" color={"picAisso.textLink2"}>
+                Sign up here
+              </Link>
             </Text>
           </Flex>
         </FormControl>

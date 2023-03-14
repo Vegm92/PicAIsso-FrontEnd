@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const LoadingStyled = styled.div`
   min-width: auto;
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,12 +10,13 @@ const LoadingStyled = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${(props) => props.theme.colors.cardBackground};
+  backdrop-filter: blur(10px);
+  z-index: 1;
 
   .pulsar {
-    --uib-size: 40px;
+    --uib-size: 200px;
     --uib-speed: 1.5s;
-    --uib-color: ${(props) => props.theme.colors.textLink2};
+    --uib-color: ${(props) => props.theme.colors.loader};
 
     position: relative;
     height: var(--uib-size);

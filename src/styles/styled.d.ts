@@ -5,6 +5,7 @@ declare module "styled-components" {
     colors: {
       background: string;
       cardBackground: string;
+      loader: string;
       text: string;
       textLink1: string;
       textLink2: string;
