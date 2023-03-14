@@ -1,4 +1,4 @@
-import { User, UserState } from "../../../../types/userTypes";
+import { UserState, User } from "../../../types/userTypes";
 import {
   loginUserActionCreator,
   logoutUserActionCreator,
@@ -6,7 +6,8 @@ import {
 } from "./usersSlice";
 
 const initialUserState: UserState = {
-  username: "",
+  id: "",
+  email: "",
   token: "",
   isLogged: false,
 };
@@ -15,7 +16,8 @@ describe("Given a userReducer", () => {
   describe("When it receives an initial state and an action to login the user", () => {
     test("Then it should return the user with its isLogged property set to true", () => {
       const testUser: User = {
-        username: "Victor",
+        id: "1234qwer",
+        email: "Victor",
         token: "qwerty123456",
       };
       const expectedUserState: UserState = {

@@ -5,13 +5,13 @@ import { CustomTokenPayload, LoginResponse } from "./types";
 import {
   loginUserActionCreator,
   logoutUserActionCreator,
-} from "../../store/features/users/usersSlice/usersSlice";
+} from "../../store/features/usersSlice/usersSlice";
 import { CustomToast } from "../../modals/CustomToast";
 import { UserCredentials, UserState } from "../../types/userTypes";
 import {
   setIsLoadingActionCreator,
   unsetIsLoadingActionCreator,
-} from "../../store/features/ui/uiSlice";
+} from "../../store/features/uiSlice/uiSlice";
 
 const useUser = () => {
   const dispatch = useAppDispatch();
@@ -43,8 +43,13 @@ const useUser = () => {
 
       const tokenPayload: CustomTokenPayload = decodeToken(token);
 
-      const { username } = tokenPayload;
-      const logginUser: UserState = { token, username, isLogged: false };
+      const { email, id } = tokenPayload;
+      const logginUser: UserState = {
+        token,
+        email,
+        isLogged: false,
+        id,
+      };
 
       dispatch(unsetIsLoadingActionCreator());
       dispatch(loginUserActionCreator(logginUser));

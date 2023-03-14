@@ -4,6 +4,11 @@ export interface ImageDataStructure {
   image: string;
   category: string[];
   description: string;
+  id: string;
 }
 
-export type GalleryDataStructure = ImageDataStructure[];
+export interface ImagesData {
+  images: ImagesDataStructure;
+}
+
+export type ImagesDataStructure = ImageDataStructure[];
