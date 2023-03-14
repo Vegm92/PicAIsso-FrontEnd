@@ -45,7 +45,6 @@ describe("Given a LoginForm component", () => {
   describe("When the user submits the form", () => {
     test("Then it should call the handleSubmit function", async () => {
       const mockUser: UserCredentials = {
-        id: "qwe123",
         email: "victor@gmail.com",
         password: "vic123456",
       };

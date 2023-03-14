@@ -18,8 +18,7 @@ const useUser = () => {
   const { removeToken } = useToken();
   const { addToast } = CustomToast();
 
-  const apiUrl =
-    process.env.REACT_APP_URL_API! ?? process.env.REACT_APP_LOCALHOST_BACK!;
+  const apiUrl = process.env.REACT_APP_URL_API!;
   const usersEndpoint = "/users";
   const loginEndpoint = "/login";
 
@@ -34,10 +33,6 @@ const useUser = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-
-      if (!response) {
-        throw new Error();
-      }
 
       const { token } = (await response.json()) as LoginResponse;
 

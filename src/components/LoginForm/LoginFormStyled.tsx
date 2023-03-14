@@ -18,6 +18,7 @@ export const LoginFormStyled = styled.form`
   .input {
     &__password,
     &__email {
+      height: 35px;
       margin: 10px 0px;
       background-color: ${(props) => props.theme.colors.text};
     }

@@ -28,10 +28,6 @@ const useImages = () => {
 
       const { images } = (await response.json()) as ImagesData;
 
-      if (!response.ok) {
-        return;
-      }
-
       dispatch(unsetIsLoadingActionCreator());
       dispatch(loadImagesActionCreator(images));
     } catch (error) {
