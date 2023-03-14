@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import { renderRouterWithProviders } from "../../testUtils/testUtils";
+import { UserState } from "../../types/userTypes";
 
 import Header from "./Header";
 
@@ -23,6 +24,16 @@ describe("Given a Header component", () => {
       });
 
       expect(expectedButton).toBeInTheDocument();
+    });
+
+    test("Then it should show a link to with the text 'Log out' if the user is logged in", () => {
+      const user: UserState = { email: "", id: "", isLogged: true, token: "" };
+
+      renderRouterWithProviders(<Header />, { user: user });
+
+      const expectedNavBar = screen.getByRole("navigation");
+
+      expect(expectedNavBar).toBeInTheDocument();
     });
   });
 });
