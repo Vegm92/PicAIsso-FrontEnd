@@ -1,4 +1,4 @@
-import { ImageDataStructure } from "../types/imagesTypes";
+import { ImageDataStructure, ImagesData } from "../types/imagesTypes";
 import img from "../media/Chameleon_TradingCard.webp";
 
 export const imageMockCard: ImageDataStructure = {
@@ -25,4 +25,7 @@ export const imageMockVariation: ImageDataStructure = {
   prompt: "Draw a colorfull abstract chameleon",
   image: "mockimage.png",
   id: "qwert12345",
+};
+export const mockImages: ImagesData = {
+  images: [imageMock, imageMockVariation],
 };
