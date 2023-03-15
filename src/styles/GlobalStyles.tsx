@@ -25,10 +25,14 @@ body {
 input {
   outline: none;
   background-color: none;
+  color: black
 }
+
 ul, li, ol {
   list-style: none;
+  padding: 0;
 }
+
 a, :visited, :active{
   text-decoration: none;
   

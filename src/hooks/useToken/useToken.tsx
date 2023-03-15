@@ -16,9 +16,9 @@ const useToken = (): UseTokenStructure => {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const { username, id } = decodeToken<CustomTokenPayload>(token);
+      const { email, id } = decodeToken<CustomTokenPayload>(token);
 
-      dispatch(loginUserActionCreator({ id, token, email: username }));
+      dispatch(loginUserActionCreator({ id, token, email }));
     }
   }, [dispatch]);
 

@@ -21,6 +21,9 @@ export const LoginFormStyled = styled.form`
       height: 35px;
       margin: 10px 0px;
       background-color: ${(props) => props.theme.colors.text};
+      ::placeholder {
+        color: black;
+      }
     }
   }
 

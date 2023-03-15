@@ -8,7 +8,7 @@ import { loadImagesActionCreator } from "../../store/features/imagesSlice/images
 import useImages from "./useImages";
 
 afterEach(() => {
-  jest.clearAllMocks();
+  jest.resetAllMocks();
 });
 
 const spyDispatch = jest.spyOn(store, "dispatch");
