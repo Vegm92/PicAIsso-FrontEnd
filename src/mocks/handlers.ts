@@ -4,8 +4,8 @@ import { mockImages } from "./imageMock";
 const routes = {
   user: "/users",
   login: "/login",
-  images: "/picaisso",
-  getImages: "/images",
+  images: "/images",
+  getImages: "/",
 };
 
 const apiUrl = process.env.REACT_APP_URL_API!;

@@ -8,8 +8,8 @@ import { useAppDispatch } from "../../store/hooks";
 import { ImagesData } from "../../types/imagesTypes";
 
 const apiUrl = process.env.REACT_APP_URL_API;
-const pathImages = "/picaisso";
-const getImagesEndpoint = "/images";
+const pathImages = "/images";
+const getImagesEndpoint = "/";
 
 const useImages = () => {
   const dispatch = useAppDispatch();

@@ -1,4 +1,5 @@
 import { Box as Flex, Heading, Text } from "@chakra-ui/react";
+import CardList from "../../components/CardList/CardList";
 
 const HomePage = (): JSX.Element => {
   return (
@@ -11,6 +12,7 @@ const HomePage = (): JSX.Element => {
         Discover a new form of expression that pushes the boundaries of
         imagination
       </Text>
+      <CardList />
     </Flex>
   );
 };
