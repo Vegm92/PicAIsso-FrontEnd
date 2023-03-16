@@ -16,6 +16,7 @@ export const renderWithProviders = (
   preloadedState?: PreloadedState<RootState>
 ) => {
   const testStore = preloadedState ? setupStore(preloadedState) : store;
+
   const Wrapper = ({ children }: PropsWithChildren): JSX.Element => {
     return (
       <Provider store={testStore}>

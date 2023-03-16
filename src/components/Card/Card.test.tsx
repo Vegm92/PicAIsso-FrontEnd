@@ -7,6 +7,7 @@ describe("Given a Card component", () => {
   describe("When it renders", () => {
     test("Then it should show an image of the prompt", () => {
       renderRouterWithProviders(<Card image={imageMock} />);
+      // renderRouterWithProviders(<Card image={imageMock} />);
 
       const expectedImage = screen.getByRole("img");
 
@@ -15,6 +16,8 @@ describe("Given a Card component", () => {
 
     test("Then it should show a heading with the text 'Abstract Chameleon'", () => {
       renderRouterWithProviders(<Card image={imageMock} />);
+
+      // renderRouterWithProviders(<Card image={imageMock} />);
 
       const headingText = "Abstract Chameleon";
 
