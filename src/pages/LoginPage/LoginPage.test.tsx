@@ -1,7 +1,16 @@
-import { renderRouterWithProviders } from "../../testUtils/testUtils";
 import { screen } from "@testing-library/react";
-import Login from "./Login";
+import "react-router-dom";
+import * as ReactRouterDom from "react-router-dom";
+import Login from "./LoginPage";
+import LoginPage from "./LoginPage";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import { preloadedStateLoggedIn } from "../../testUtils/preloadedStates";
+import { renderRouterWithProviders } from "../../testUtils/testUtils";
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  Navigate: jest.fn(),
+}));
 
 describe("Given a Login page", () => {
   describe("When it is rendered", () => {
@@ -32,6 +41,13 @@ describe("Given a Login page", () => {
       const expectedContainerForm = screen.getByText(paragraphText);
 
       expect(expectedContainerForm).toBeInTheDocument();
+    });
+
+    describe("When the user is already logged in", () => {
+      test("Then it should call 'Navigate'", () => {
+        renderRouterWithProviders(<LoginPage />, preloadedStateLoggedIn);
+        expect(ReactRouterDom.Navigate).toHaveBeenCalled();
+      });
     });
   });
 });

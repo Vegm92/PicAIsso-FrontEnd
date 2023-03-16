@@ -27,7 +27,7 @@ const HeaderStyled = styled.header`
     background-color: ${(props) => props.theme.colors.button.loginForm};
     :hover {
       box-shadow: ${(props) => props.theme.colors.shadow};
-      background-color: ${(props) => props.theme.colors.button.login};
+      background-color: ${(props) => props.theme.colors.button.loginForm};
     }
   }
 

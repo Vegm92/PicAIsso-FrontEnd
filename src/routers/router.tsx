@@ -2,7 +2,7 @@ import { RouteObject, createBrowserRouter } from "react-router-dom";
 import App from "../App/App";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import HomePage from "../pages/HomePage/HomePage";
-import Login from "../pages/Login/Login";
+import Login from "../pages/LoginPage/LoginPage";
 import endpoints from "./types";
 
 const routes: RouteObject[] = [

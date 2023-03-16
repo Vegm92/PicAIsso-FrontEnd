@@ -2,7 +2,7 @@ export interface ImageDataStructure {
   title: string;
   prompt: string;
   image: string;
-  category: string[];
+  category: string;
   description: string;
   id: string;
 }

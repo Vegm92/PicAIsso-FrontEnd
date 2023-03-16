@@ -9,8 +9,8 @@ const theme: DefaultTheme = {
     textLink1: "#57ABFA",
     textLink2: "#8C53FF",
     loader: "rgba(84, 20, 500, 1)",
-    shadow: "0px 0px 45px #541496",
-    imgShadow: "0px 0px 15px #541496",
+    shadow: "0px 0px 45px #CC99FF",
+    imgShadow: "0px 0px 45px #CC99FF",
     button: {
       text: "#000000",
       loginForm: "#CC99FF",

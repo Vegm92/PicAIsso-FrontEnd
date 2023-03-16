@@ -15,7 +15,7 @@ const CardList = (): JSX.Element => {
 
   return (
     <CardListStyled>
-      {images?.map((image) => (
+      {images.map((image) => (
         <li key={image.id}>
           <Card image={image} />
         </li>
