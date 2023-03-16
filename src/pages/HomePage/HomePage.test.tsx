@@ -10,11 +10,11 @@ describe("Given a Home page", () => {
 
       renderRouterWithProviders(<HomePage />);
 
-      const expectedButton = screen.getByRole("heading", {
+      const expectedHeading = screen.getByRole("heading", {
         name: headingContent,
       });
 
-      expect(expectedButton).toBeInTheDocument();
+      expect(expectedHeading).toBeInTheDocument();
     });
 
     test("Then it should show a text about discovering a new form of expression", () => {

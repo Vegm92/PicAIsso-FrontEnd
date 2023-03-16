@@ -41,7 +41,7 @@ describe("Given a Login page", () => {
 
     describe("When the user is already logged in", () => {
       test("Then it should call 'Navigate'", () => {
-        renderRouterWithProviders(<LoginPage />);
+        renderRouterWithProviders();
 
         expect(ReactRouterDom.Navigate).toHaveBeenCalled();
       });

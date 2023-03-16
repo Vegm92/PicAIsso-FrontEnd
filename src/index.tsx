@@ -7,7 +7,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import theme from "./styles/themes";
 import { ThemeProvider } from "styled-components";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./routers/router";
+import { router } from "./routers/routes";
 import { picAissoTheme } from "./styles/chakraUi";
 
 const container = document.getElementById("root")!;

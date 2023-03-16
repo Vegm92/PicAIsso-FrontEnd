@@ -1,5 +1,4 @@
 import { screen } from "@testing-library/react";
-import { preloadedStateLoggedIn } from "../../testUtils/preloadedStates";
 import { renderRouterWithProviders } from "../../testUtils/testUtils";
 
 import Header from "./Header";

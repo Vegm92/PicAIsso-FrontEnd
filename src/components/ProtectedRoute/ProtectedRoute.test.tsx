@@ -1,4 +1,3 @@
-import * as ReactRouterDom from "react-router-dom";
 import { screen } from "@testing-library/react";
 import { useAppSelector } from "../../store/hooks";
 import ProtectedRoute from "./ProtectedRoute";

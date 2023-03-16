@@ -7,7 +7,7 @@ import { ThemeProvider } from "styled-components";
 import { RouterProvider } from "react-router-dom";
 import theme from "../styles/themes";
 import { RootState, setupStore, store } from "../store";
-import { getComponentRouter, router } from "../routers/router";
+import { getComponentRouter, router } from "../routers/routes";
 import { picAissoTheme } from "../styles/chakraUi";
 import GlobalStyles from "../styles/GlobalStyles";
 
