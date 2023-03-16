@@ -1,13 +1,20 @@
-import ProtectedRoute from "./ProtectedRoute";
 import { screen } from "@testing-library/react";
 import { useAppSelector } from "../../store/hooks";
+import ProtectedRoute from "./ProtectedRoute";
 import { renderRouterWithProviders } from "../../testUtils/testUtils";
 
 jest.mock("../../store/hooks", () => ({
   useAppSelector: jest.fn(),
 }));
 
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  Navigate: jest.fn(),
+}));
+
 describe("Given a ProtectedRoute component", () => {
+  const component = <div>HomePage</div>;
+
   describe("When it is rendered and there is a valid token", () => {
     test("Then it should show the react element received by props", () => {
       const state = { user: { token: "token123qwe" } };
@@ -15,10 +22,9 @@ describe("Given a ProtectedRoute component", () => {
       (useAppSelector as jest.Mock).mockImplementation((selector) =>
         selector(state)
       );
-      const element = <div>HomePage</div>;
       const expectedTest = "HomePage";
 
-      renderRouterWithProviders(<ProtectedRoute element={element} />);
+      renderRouterWithProviders(<ProtectedRoute element={component} />);
 
       const expectedElement = screen.getByText(expectedTest);
 
