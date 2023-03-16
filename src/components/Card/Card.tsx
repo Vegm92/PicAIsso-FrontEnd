@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { v4 as uuid } from "uuid";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { ImageDataStructure } from "../../types/imagesTypes";
 import CardStyled from "./CardStyled";
@@ -16,30 +17,40 @@ interface CardProps {
   image: ImageDataStructure;
 }
 
-const Card = ({ image }: CardProps): JSX.Element => {
+const Card = ({
+  image: { category, description, image, prompt, title },
+}: CardProps): JSX.Element => {
+  const categories = category.split(",");
+
   return (
     <CardStyled className="card">
       <Heading className="card__title" size="md">
-        {image.title}
+        {title}
       </Heading>
       <Image
-        src={image.image}
-        alt={image.title}
+        src={image}
+        alt={title}
         className="card__image"
         borderRadius="lg"
       />
       <HStack>
-        <Box className="card__category">{image.category}</Box>
+        <Box as="ul" className="card__category">
+          {categories.map((tag) => (
+            <li key={uuid()} className="card__category-tag">
+              {tag}
+            </li>
+          ))}
+        </Box>
       </HStack>
       <Stack mt="1" spacing="3" className="card__info info">
-        <Text className="info__description">{image.description}</Text>
+        <Text className="info__description">{description}</Text>
         <Text
           className="info__prompt"
           color={"picAisso.textLink1"}
           fontSize="1xl"
           fontStyle={"italic"}
         >
-          {`"${image.prompt}"`}
+          prompt: {prompt}
         </Text>
       </Stack>
       <Divider />

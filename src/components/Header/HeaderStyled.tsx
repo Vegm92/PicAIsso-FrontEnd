@@ -13,13 +13,8 @@ const HeaderStyled = styled.header`
     font-size: ${(props) => props.theme.fontSizes.bigTitleFontSize};
     .main-header__link {
       font-size: medium;
-      color: white;
-      align-self: flex-end;
-      margin-bottom: 6px;
-      border: 1px solid white;
-      padding: 8px;
-      border-radius: 8px;
-      background-color: ${(props) => props.theme.colors.button.loginForm};
+      color: black;
+      align-self: center;
     }
   }
 

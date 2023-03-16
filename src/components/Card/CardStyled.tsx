@@ -16,10 +16,16 @@ const CardStyled = styled.article`
   margin-top: 30px;
 
   .card__category {
-    border: 2px solid ${(props) => props.theme.colors.button.loginForm};
-    border-radius: 5px;
     padding: 5px;
-    margin: 5px;
+    display: flex;
+    width: 320px;
+    justify-content: space-around;
+    &-tag {
+      border: 2px solid purple;
+      padding: 5px 10px;
+      border-radius: 10px;
+      background-color: ${(props) => props.theme.colors.shadow};
+    }
   }
 
   .card__image {
@@ -32,12 +38,16 @@ const CardStyled = styled.article`
 
     :hover {
       box-shadow: ${(props) => props.theme.colors.shadow};
-      background-color: ${(props) => props.theme.colors.button.loginForm};
+      background-color: ${(props) => props.theme.colors.button.login};
     }
   }
 
   .fav__icon {
     color: white;
+  }
+
+  .info__description {
+    padding: 0 25px;
   }
 `;
 

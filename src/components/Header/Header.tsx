@@ -1,4 +1,4 @@
-import { Divider, Flex, Spacer } from "@chakra-ui/react";
+import { Button, Divider, Flex, Spacer } from "@chakra-ui/react";
 import { Link, NavLink } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 import { useAppSelector } from "../../store/hooks";
@@ -18,13 +18,17 @@ const Header = (): JSX.Element => {
         <Spacer />
 
         {isLogged ? (
-          <Link to="/" className="main-header__link" onClick={logoutUser}>
-            Log out
-          </Link>
+          <Button>
+            <Link to="/" className="main-header__link" onClick={logoutUser}>
+              Log out
+            </Link>
+          </Button>
         ) : (
-          <Link to="/login" className="main-header__link">
-            Log in
-          </Link>
+          <Button>
+            <Link to="/login" className="main-header__link">
+              Log in
+            </Link>
+          </Button>
         )}
       </Flex>
 

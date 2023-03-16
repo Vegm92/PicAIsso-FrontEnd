@@ -63,7 +63,7 @@ const LoginForm = (): JSX.Element => {
               className="button__login"
               mt={1}
               h="35px"
-              color="picAisso.buttons.text"
+              color={"picAisso.button.text"}
               backgroundColor={"picAisso.button.loginForm"}
               type="submit"
               fontSize="2xl"
