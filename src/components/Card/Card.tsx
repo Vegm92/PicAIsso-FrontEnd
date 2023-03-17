@@ -30,6 +30,8 @@ const Card = ({ image }: CardProps): JSX.Element => {
         {image.title}
       </Heading>
       <Image
+        boxSize={"90%"}
+        objectFit="cover"
         src={image.image}
         alt={image.title}
         className="card__image"

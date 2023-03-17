@@ -29,9 +29,8 @@ const CardStyled = styled.article`
   }
 
   .card__image {
-    width: 300px;
     box-shadow: ${(props) => props.theme.colors.imgShadow};
-    margin: 20px 0;
+    margin: 15px;
   }
 
   .buttons__add {
