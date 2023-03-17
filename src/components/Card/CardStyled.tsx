@@ -29,11 +29,12 @@ const CardStyled = styled.article`
   }
 
   .card__image {
-    width: 320px;
+    width: 300px;
     box-shadow: ${(props) => props.theme.colors.imgShadow};
+    margin: 20px 0;
   }
 
-  .button__add {
+  .buttons__add {
     border: none;
 
     :hover {
@@ -47,7 +48,7 @@ const CardStyled = styled.article`
   }
 
   .info__description {
-    padding: 0 25px;
+    padding: 0 10px;
   }
 `;
 
