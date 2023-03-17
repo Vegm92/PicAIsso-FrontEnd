@@ -14,7 +14,6 @@ const routes: RouteObject[] = [
     children: [
       { path: "/", element: <ProtectedRoute element={<HomePage />} /> },
       { path: endpoints.login, element: <Login /> },
-      { path: endpoints.create, element: <Login /> },
     ],
   },
 ];

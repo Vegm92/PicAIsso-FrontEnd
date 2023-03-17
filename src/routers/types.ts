@@ -5,7 +5,7 @@ interface Routes {
 
 const endpoints: Routes = {
   login: "/login",
-  create: "/create",
+  create: "/createPage",
 };
 
 export default endpoints;

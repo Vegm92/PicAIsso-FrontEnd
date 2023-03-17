@@ -11,6 +11,15 @@ import { getComponentRouter, router } from "../routers/routes";
 import { picAissoTheme } from "../styles/chakraUi";
 import GlobalStyles from "../styles/GlobalStyles";
 
+export const preloadedStateLoggedIn = {
+  user: {
+    email: "",
+    id: "",
+    isLogged: true,
+    token: "",
+  },
+};
+
 export const renderWithProviders = (
   ui: React.ReactElement,
   preloadedState?: PreloadedState<RootState>

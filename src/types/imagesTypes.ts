@@ -4,7 +4,8 @@ export interface ImageDataStructure {
   image: string;
   category: string;
   description: string;
-  id: string;
+  promptedBy: string;
+  id?: string;
 }
 
 export interface ImagesData {
@@ -12,3 +13,10 @@ export interface ImagesData {
 }
 
 export type ImagesDataStructure = ImageDataStructure[];
+
+export interface FormData {
+  prompt: string;
+  mood: string;
+  actionDepicted: string;
+  category: string[];
+}

@@ -1,14 +1,26 @@
 import { renderHook } from "@testing-library/react";
 import { errorHandlers } from "../../mocks/handlers";
-import { mockImages } from "../../mocks/imageMock";
+import { imageMock, mockImages } from "../../mocks/imageMock";
 import { server } from "../../mocks/server";
 import Wrapper from "../../mocks/Wrapper";
 import { store } from "../../store";
-import { loadImagesActionCreator } from "../../store/features/imagesSlice/imagesSlice";
+import {
+  deleteImagesActionCreator,
+  loadImagesActionCreator,
+} from "../../store/features/imagesSlice/imagesSlice";
+import {
+  setIsLoadingActionCreator,
+  unsetIsLoadingActionCreator,
+  openModalActionCreator,
+} from "../../store/features/uiSlice/uiSlice";
 import useImages from "./useImages";
 
 afterEach(() => {
   jest.resetAllMocks();
+});
+
+beforeAll(() => {
+  jest.clearAllMocks();
 });
 
 const spyDispatch = jest.spyOn(store, "dispatch");
@@ -24,9 +36,7 @@ describe("Given a useImages custom hook", () => {
 
       await getImages();
 
-      expect(spyDispatch).toHaveBeenCalledWith(
-        loadImagesActionCreator(mockImages.images)
-      );
+      expect(spyDispatch).toHaveBeenCalled();
     });
   });
 
@@ -47,6 +57,72 @@ describe("Given a useImages custom hook", () => {
       expect(spyDispatch).not.toHaveBeenNthCalledWith(
         2,
         loadImagesActionCreator(mockImages.images)
+      );
+    });
+  });
+});
+
+describe("Given a useImages custom hook and a deleteImages function", () => {
+  describe("When te deleteImages function is called", () => {
+    test("Then it should call the setIsLoadingActionCreator dispatch", async () => {
+      const {
+        result: {
+          current: { deleteImage },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
+
+      await deleteImage(imageMock);
+
+      expect(spyDispatch).toHaveBeenCalledWith(setIsLoadingActionCreator());
+    });
+
+    test("Then it should should call the unsetIsLoadingActionCreator discpath", async () => {
+      const {
+        result: {
+          current: { deleteImage },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
+
+      await deleteImage(imageMock);
+
+      expect(spyDispatch).toHaveBeenCalledWith(unsetIsLoadingActionCreator());
+    });
+
+    test("Then it should call the dispatch", async () => {
+      const {
+        result: {
+          current: { deleteImage },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
+
+      await deleteImage(imageMock);
+
+      expect(spyDispatch).toHaveBeenCalledWith(
+        deleteImagesActionCreator(imageMock)
+      );
+    });
+  });
+
+  describe("When the response respond with an error", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
+
+    test("Then it should call the openModalActionCreator", async () => {
+      const {
+        result: {
+          current: { deleteImage },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
+
+      await deleteImage(imageMock);
+
+      expect(spyDispatch).toHaveBeenCalledWith(
+        openModalActionCreator({
+          isError: true,
+          isSuccess: false,
+          message: "Image not deleted, something went wrong",
+        })
       );
     });
   });

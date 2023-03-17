@@ -1,5 +1,13 @@
-import { imageMock, imageMockVariation } from "../../../mocks/imageMock";
-import { imagesReducer, loadImagesActionCreator } from "./imagesSlice";
+import {
+  imageMock,
+  imageMockVariation,
+  mockImages,
+} from "../../../mocks/imageMock";
+import {
+  deleteImagesActionCreator,
+  imagesReducer,
+  loadImagesActionCreator,
+} from "./imagesSlice";
 import { ImagesData, ImagesDataStructure } from "../../../types/imagesTypes";
 
 const images: ImagesDataStructure = [imageMock, imageMockVariation];
@@ -18,6 +26,17 @@ describe("Given a users reducer", () => {
       const newImages = imagesReducer(initialImagesState, loadImagesAction);
 
       expect(newImages).toStrictEqual(expectecImagesToRender);
+    });
+  });
+
+  describe("When it receives a new state and the action to delete events", () => {
+    test("Then it should return an event", () => {
+      const deleteImageAction = deleteImagesActionCreator(imageMockVariation);
+      const expectedNewArray: ImagesData = { images: [imageMock] };
+
+      const deletedEvent = imagesReducer(mockImages, deleteImageAction);
+
+      expect(deletedEvent).toStrictEqual(expectedNewArray);
     });
   });
 });

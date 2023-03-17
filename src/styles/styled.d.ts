@@ -16,6 +16,10 @@ declare module "styled-components" {
         loginForm: string;
         login: string;
         utilsButton: string;
+        delete: {
+          background: string;
+          deleteHover: string;
+        };
       };
     };
 
