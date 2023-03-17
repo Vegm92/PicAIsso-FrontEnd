@@ -16,6 +16,10 @@ const theme: DefaultTheme = {
       loginForm: "#CC99FF",
       login: "linear-gradient(94deg, #C764EC 0%, #4A36B1 100%)",
       utilsButton: "#57ABFA",
+      delete: {
+        background: "#EB455F",
+        deleteHover: "#EB400f",
+      },
     },
   },
 

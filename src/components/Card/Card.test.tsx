@@ -1,9 +1,6 @@
 import { screen } from "@testing-library/react";
 import { imageMock } from "../../mocks/imageMock";
-import {
-  renderRouterWithProviders,
-  renderWithProviders,
-} from "../../testUtils/testUtils";
+import { renderRouterWithProviders } from "../../testUtils/testUtils";
 import Card from "./Card";
 
 describe("Given a Card component", () => {

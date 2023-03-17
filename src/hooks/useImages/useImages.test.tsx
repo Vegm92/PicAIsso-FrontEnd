@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { errorHandlers } from "../../mocks/handlers";
-import { imageMock, mockImages, mockListImages } from "../../mocks/imageMock";
+import { imageMock, mockImages } from "../../mocks/imageMock";
 import { server } from "../../mocks/server";
 import Wrapper from "../../mocks/Wrapper";
 import { store } from "../../store";
