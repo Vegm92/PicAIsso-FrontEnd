@@ -1,4 +1,5 @@
 import {
+  FormCreateStructure,
   ImageDataStructure,
   ImagesData,
   ImagesDataStructure,
@@ -41,3 +42,11 @@ export const mockListImages: ImagesDataStructure = [
   imageMock,
   imageMockVariation,
 ];
+
+export const mockImageCreate: FormCreateStructure = {
+  subject: "Chameleon",
+  mood: "Cheerful",
+  actionDepicted: "resting",
+  description: "This is an abstract Chameleon",
+  category: "image-category0",
+};
