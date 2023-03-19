@@ -18,8 +18,7 @@ const DeleteButton = ({ image }: DeleteButtonProps): JSX.Element => {
         type="button"
         onClick={() => deleteImage(image)}
       >
-        <AiOutlineDelete color="black" className="delete__icon" />
-        Delete
+        <AiOutlineDelete size={25} color="black" className="delete__icon" />
       </DeleteButtonStyled>
     </Flex>
   );
