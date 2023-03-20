@@ -14,6 +14,7 @@ const CardStyled = styled.article`
   min-width: 320px;
   padding: 1rem 0;
   margin-top: 30px;
+  position: relative;
 
   .card__category {
     padding: 5px;

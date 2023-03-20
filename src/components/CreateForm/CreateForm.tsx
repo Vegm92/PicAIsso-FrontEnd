@@ -8,7 +8,6 @@ import {
   Select,
   SimpleGrid,
   Stack,
-  Text,
   Textarea,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -21,11 +20,12 @@ const CreateForm = (): JSX.Element => {
   const { createImage } = useImages();
 
   const [subject, setSubject] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [actionDepicted, setActionDepicted] = useState("");
   const [mood, setMood] = useState("");
   const [category, setCategory] = useState("");
-  // const [image] = useState<File | string>("");
+  const [image] = useState("");
 
   const handleSubject = ({
     target: { value },
@@ -67,6 +67,8 @@ const CreateForm = (): JSX.Element => {
     event.preventDefault();
 
     const newImage: FormCreateStructure = {
+      title,
+      image,
       subject,
       description,
       actionDepicted,
@@ -92,7 +94,7 @@ const CreateForm = (): JSX.Element => {
         </Heading>
 
         <Stack className="create-form__inputs" spacing={3}>
-          <label htmlFor="subject">Subject</label>
+          <FormLabel htmlFor="subject">Subject</FormLabel>
           <Input
             className="input__subject input"
             type="text"

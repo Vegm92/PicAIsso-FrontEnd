@@ -8,6 +8,9 @@ import img from "../media/Chameleon_TradingCard.webp";
 
 export const imageMockCard: ImageDataStructure = {
   title: "Abstract Chameleon",
+  actionDepicted: "",
+  mood: "",
+  subject: "",
   category: "whatever, AnEver",
   description: "This is an abstract Chameleon",
   prompt: "Draw a colorfull abstract chameleon",
@@ -18,6 +21,9 @@ export const imageMockCard: ImageDataStructure = {
 
 export const imageMock: ImageDataStructure = {
   title: "Abstract Chameleon",
+  actionDepicted: "",
+  mood: "",
+  subject: "",
   category: "whatever, AnEver",
   description: "This is an abstract Chameleon",
   prompt: "Draw a colorfull abstract chameleon",
@@ -27,6 +33,9 @@ export const imageMock: ImageDataStructure = {
 };
 export const imageMockVariation: ImageDataStructure = {
   title: "Abstract mock",
+  actionDepicted: "",
+  mood: "",
+  subject: "",
   category: "whatever, AnEver",
   description: "This is an abstract Chameleon",
   prompt: "Draw a colorfull abstract chameleon",
@@ -44,6 +53,8 @@ export const mockListImages: ImagesDataStructure = [
 ];
 
 export const mockImageCreate: FormCreateStructure = {
+  title: "",
+  image: "",
   subject: "Chameleon",
   mood: "Cheerful",
   actionDepicted: "resting",

@@ -1,11 +1,16 @@
-export interface ImageDataStructure {
+export interface FormCreateStructure {
   title: string;
-  prompt: string;
-  image: string;
+  subject: string;
+  actionDepicted: string;
+  mood: string;
   category: string;
   description: string;
+  image: string;
+}
+export interface ImageDataStructure extends FormCreateStructure {
+  prompt: string;
+  id: string;
   promptedBy: string;
-  id?: string;
 }
 
 export interface ImagesData {
@@ -13,11 +18,3 @@ export interface ImagesData {
 }
 
 export type ImagesDataStructure = ImageDataStructure[];
-
-export interface FormCreateStructure {
-  subject: string;
-  description: string;
-  actionDepicted: string;
-  mood: string;
-  category: string;
-}

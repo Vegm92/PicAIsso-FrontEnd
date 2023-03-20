@@ -4,7 +4,9 @@ import CreateForm from "../../components/CreateForm/CreateForm";
 const CreatePage = (): JSX.Element => {
   return (
     <>
-      <Heading>Text To Image - AI Image Generator API</Heading>
+      <Heading color={"white"} margin={"20px"}>
+        Text To Image - AI Image Generator API
+      </Heading>
       <CreateForm></CreateForm>
     </>
   );
