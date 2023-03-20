@@ -3,7 +3,6 @@ import { errorHandlers } from "../../mocks/handlers";
 import { imageMock, mockImageCreate, mockImages } from "../../mocks/imageMock";
 import { server } from "../../mocks/server";
 import Wrapper from "../../mocks/Wrapper";
-import { CustomToast } from "../../modals/CustomToast";
 import { store } from "../../store";
 import {
   deleteImagesActionCreator,

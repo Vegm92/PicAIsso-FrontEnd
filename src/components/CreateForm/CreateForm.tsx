@@ -20,7 +20,7 @@ const CreateForm = (): JSX.Element => {
   const { createImage } = useImages();
 
   const [subject, setSubject] = useState("");
-  const [title, setTitle] = useState("");
+  const [title] = useState("");
   const [description, setDescription] = useState("");
   const [actionDepicted, setActionDepicted] = useState("");
   const [mood, setMood] = useState("");
@@ -54,14 +54,6 @@ const CreateForm = (): JSX.Element => {
   const handleCategory = (selectedCategory: string) => {
     setCategory(selectedCategory);
   };
-
-  // const handleImage = ({
-  //   target: { files },
-  // }: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (files !== null) {
-  //     setImage(files[0]);
-  //   }
-  // };
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -99,8 +91,9 @@ const CreateForm = (): JSX.Element => {
             className="input__subject input"
             type="text"
             placeholder="The main focus of the image"
-            id="subject"
+            value={subject}
             autoComplete="off"
+            aria-label="subject"
             onChange={handleSubject}
           />
 
@@ -109,6 +102,7 @@ const CreateForm = (): JSX.Element => {
             className="input__selector input"
             placeholder="Select Mood"
             id="mood"
+            value={mood}
             onChange={handleMood}
           >
             <option value="Cheerful"> Cheerful 🌞</option>
@@ -123,6 +117,7 @@ const CreateForm = (): JSX.Element => {
             type="text"
             placeholder="What is going on in you image?"
             id="actionDepicted"
+            value={actionDepicted}
             autoComplete="off"
             onChange={handleActionDepicted}
           />
@@ -132,11 +127,14 @@ const CreateForm = (): JSX.Element => {
             className="input__keywords input"
             placeholder="Add a short description to feed the AI!"
             id="description"
+            value={description}
             onChange={handleDescription}
           />
         </Stack>
 
-        <label htmlFor="category">Choose a style</label>
+        <label aria-label="category" htmlFor="category">
+          Choose a style
+        </label>
         <SimpleGrid
           w={"300px"}
           columns={3}
@@ -149,6 +147,7 @@ const CreateForm = (): JSX.Element => {
           {Object.values(imagesPrompt).map((value, index) => {
             return (
               <Image
+                aria-label="category"
                 boxSize={"80px"}
                 objectFit="cover"
                 src={value}

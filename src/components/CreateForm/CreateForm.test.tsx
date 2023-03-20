@@ -1,13 +1,12 @@
-import { screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { mockImageCreate } from "../../mocks/imageMock";
-import {
-  renderRouterWithProviders,
-  renderWithProviders,
-} from "../../testUtils/testUtils";
+import { fireEvent, screen } from "@testing-library/react";
+import { renderWithProviders } from "../../testUtils/testUtils";
 import CreateForm from "./CreateForm";
 
 const mockCreateImageFunction = jest.fn();
+
+jest.mock("../../hooks/useImages/useImages", () => () => ({
+  createImage: mockCreateImageFunction,
+}));
 
 describe("Given a CreateForm component", () => {
   describe("When it is rendered", () => {
@@ -35,7 +34,7 @@ describe("Given a CreateForm component", () => {
     });
 
     test("Then it should show an input textbox with for attribute text 'Subject'", () => {
-      const text = "Subject";
+      const text = "subject";
 
       renderWithProviders(<CreateForm />);
 
@@ -57,16 +56,15 @@ describe("Given a CreateForm component", () => {
 
   describe("When the user writes 'Chameleon' on the subject field", () => {
     test("Then it should change the value of the subject's field to 'Chameleon'", async () => {
-      const subjectLabel = "Subject";
+      const subjectLabel = "subject";
       const expectedFieldValue = "Chameleon";
       renderWithProviders(<CreateForm />);
 
       const submitField = screen.getByLabelText(subjectLabel);
 
-      await waitFor(
-        async () => await userEvent.type(submitField, expectedFieldValue)
-      );
-      expect(subjectLabel).toHaveValue(expectedFieldValue);
+      fireEvent.change(submitField, { target: { value: expectedFieldValue } });
+
+      expect(submitField).toHaveProperty("value", expectedFieldValue);
     });
   });
 
@@ -74,24 +72,41 @@ describe("Given a CreateForm component", () => {
     test("Then it should change the value of the actionDepicted field to 'resting'", () => {
       const actionDepictedLabel = "Action";
       const expectedFieldValue = "Chameleon";
-      renderRouterWithProviders(<CreateForm />);
+      renderWithProviders(<CreateForm />);
 
-      // const submitField = screen.getByLabelText(actionDepictedLabel);
+      const submitField = screen.getByLabelText(actionDepictedLabel);
+
+      fireEvent.change(submitField, { target: { value: expectedFieldValue } });
+
+      expect(submitField).toHaveProperty("value", expectedFieldValue);
     });
   });
+
   describe("When the user writes 'This is an abstract Chameleon' on the description field", () => {
     test("Then it should change the value of the description field to 'This is an abstract Chameleon'", () => {
-      const subjectLabel = "Subject";
-      const expectedFieldValue = "Chameleon";
-      renderRouterWithProviders(<CreateForm />);
+      const descriptionLabel = "Description";
+      const expectedFieldValue = "This is an abstract Chameleon";
+      renderWithProviders(<CreateForm />);
 
-      // const submitField = screen.getByLabelText(subjectLabel);
+      const submitField = screen.getByLabelText(descriptionLabel);
+
+      fireEvent.change(submitField, { target: { value: expectedFieldValue } });
+
+      expect(submitField).toHaveProperty("value", expectedFieldValue);
     });
   });
+
   describe("When the user selects 'Cheerful' on the mood field", () => {
-    test("Then it should change the value of the mood's field to 'Cheerful'", () => {});
-  });
-  describe("When the user selects 'image-category0' on the category field", () => {
-    test("Then it should change the value of the category's field to 'image-category0'", () => {});
+    test("Then it should change the value of the mood's field to 'Cheerful'", () => {
+      const moodLabel = "Mood";
+      const expectedFieldValue = "Cheerful";
+
+      renderWithProviders(<CreateForm />);
+
+      const submitField = screen.getByLabelText(moodLabel);
+      fireEvent.change(submitField, { target: { value: expectedFieldValue } });
+
+      expect(submitField).toHaveProperty("value", expectedFieldValue);
+    });
   });
 });
