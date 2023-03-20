@@ -39,7 +39,7 @@ const Header = (): JSX.Element => {
           <NavLink to="/" className="link__Home">
             Home
           </NavLink>
-          <NavLink to="/createPage" className="link__Create">
+          <NavLink to="/create" className="link__Create">
             Create
           </NavLink>
           <NavLink to="/myCollection" className="link__MyCollection">
@@ -51,7 +51,7 @@ const Header = (): JSX.Element => {
           <NavLink to="/" className="link__Home">
             Home
           </NavLink>
-          <NavLink to="/createPage" className="link__Create">
+          <NavLink to="/create" className="link__Create">
             Create
           </NavLink>
         </nav>

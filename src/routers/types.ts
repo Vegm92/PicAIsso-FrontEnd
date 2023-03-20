@@ -6,7 +6,7 @@ interface Routes {
 
 const endpoints: Routes = {
   login: "/login",
-  create: "/createPage",
+  create: "/create",
   detail: "/detail/:id",
 };
 
