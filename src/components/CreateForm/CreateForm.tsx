@@ -151,7 +151,7 @@ const CreateForm = (): JSX.Element => {
                 boxSize={"80px"}
                 objectFit="cover"
                 src={value}
-                key={index}
+                key={value}
                 borderRadius={"10px"}
                 id="category"
                 placeholder={`image-category${index}`}
