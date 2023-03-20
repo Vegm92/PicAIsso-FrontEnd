@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { errorHandlers } from "../../mocks/handlers";
-import { imageMock, mockImages } from "../../mocks/imageMock";
+import { imageMock, mockImageCreate, mockImages } from "../../mocks/imageMock";
 import { server } from "../../mocks/server";
 import Wrapper from "../../mocks/Wrapper";
 import { store } from "../../store";
@@ -24,6 +24,13 @@ beforeAll(() => {
 });
 
 const spyDispatch = jest.spyOn(store, "dispatch");
+const mockAddToast = jest.fn();
+
+jest.mock("../../modals/CustomToast", () => ({
+  CustomToast: () => ({
+    addToast: mockAddToast,
+  }),
+}));
 
 describe("Given a useImages custom hook", () => {
   describe("When it is called", () => {
@@ -124,6 +131,46 @@ describe("Given a useImages custom hook and a deleteImages function", () => {
           message: "Image not deleted, something went wrong",
         })
       );
+    });
+  });
+});
+
+describe("Given a useImages custom hook and the createEvent function", () => {
+  describe("When the createEvent function is called", () => {
+    test("Then it should call the openModal action creator", async () => {
+      const {
+        result: {
+          current: { createImage },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
+
+      await createImage(mockImageCreate);
+
+      expect(spyDispatch).toHaveBeenCalled();
+    });
+  });
+
+  describe("When the response respond with an error", () => {
+    beforeEach(() => {
+      server.resetHandlers(...errorHandlers);
+    });
+
+    test("Then it should call the openModalActionCreator", async () => {
+      const addToastCall = [
+        "Error while creating an image",
+        "Coulnd't create a new image",
+        "error",
+      ];
+
+      const {
+        result: {
+          current: { createImage },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
+
+      await createImage(mockImageCreate);
+
+      expect(mockAddToast).toHaveBeenCalledWith(...addToastCall);
     });
   });
 });

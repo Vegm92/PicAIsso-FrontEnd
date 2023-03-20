@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { CustomToast } from "../../modals/CustomToast";
 import {
   deleteImagesActionCreator,
   loadImagesActionCreator,
@@ -9,16 +10,23 @@ import {
   unsetIsLoadingActionCreator,
 } from "../../store/features/uiSlice/uiSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { ImageDataStructure, ImagesData } from "../../types/imagesTypes";
+import {
+  FormCreateStructure,
+  ImageDataStructure,
+  ImagesData,
+} from "../../types/imagesTypes";
+import formData from "./formData";
 
 const apiUrl = process.env.REACT_APP_URL_API;
 const pathImages = "/images";
 const getImagesEndpoint = "/";
 const deleteImagesEndpoint = "/delete/";
+const createImageEndPoint = "/create/";
 
 const useImages = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.user);
+  const { addToast } = CustomToast();
 
   const getImages = useCallback(async () => {
     try {
@@ -76,7 +84,40 @@ const useImages = () => {
     [dispatch, token]
   );
 
-  return { getImages, deleteImage };
+  const createImage = useCallback(
+    async (image: FormCreateStructure) => {
+      try {
+        dispatch(setIsLoadingActionCreator());
+        const data = formData(image);
+
+        const response = await fetch(
+          `${apiUrl}${pathImages}${createImageEndPoint}`,
+          {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+            body: data,
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("The image couldn't be created");
+        }
+
+        dispatch(unsetIsLoadingActionCreator());
+        addToast("Image Created!", "The image has been created", "success");
+      } catch (error) {
+        dispatch(unsetIsLoadingActionCreator());
+        addToast(
+          "Error while creating an image",
+          "Coulnd't create a new image",
+          "error"
+        );
+      }
+    },
+    [dispatch, token, addToast]
+  );
+
+  return { getImages, deleteImage, createImage };
 };
 
 export default useImages;

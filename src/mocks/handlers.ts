@@ -10,6 +10,7 @@ const routes = {
   getImages: "/",
   myImages: "/my-images",
   deleteImage: "/delete/",
+  createImage: "/create",
   id: "qwert1234",
 };
 
