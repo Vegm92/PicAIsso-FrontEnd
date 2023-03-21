@@ -29,6 +29,16 @@ const CreateFormStyled = styled.form`
     display: flex;
     justify-content: space-around;
   }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+
+    .generated-image {
+      border-radius: 20px;
+    }
+  }
 `;
 
 export default CreateFormStyled;

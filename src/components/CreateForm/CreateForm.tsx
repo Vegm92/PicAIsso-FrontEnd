@@ -10,20 +10,31 @@ import {
   Stack,
   Textarea,
 } from "@chakra-ui/react";
-import { useState } from "react";
+// import { Configuration, OpenAIApi } from "openai";
+import { useEffect, useState } from "react";
 import imagesPrompt from "../../media/img/imagesObject";
 import CreateFormStyled from "./CreateFormStyled";
 import { FormCreateStructure } from "../../types/imagesTypes";
 import useImages from "../../hooks/useImages/useImages";
+import useApi from "../../hooks/useApi/useApi";
 
 const CreateForm = (): JSX.Element => {
   const { createImage } = useImages();
+  const { generateImage } = useApi();
 
   const [title, setTitle] = useState("");
   const [userPrompt, setUserPrompt] = useState("");
+  const [finalPrompt, setFinalPrompt] = useState("");
+
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    setFinalPrompt(
+      `Imaging: ${userPrompt},${category} style, and a description of ${description} `
+    );
+  }, [category, description, userPrompt]);
 
   const handleTitle = ({
     target: { value },
@@ -49,13 +60,17 @@ const CreateForm = (): JSX.Element => {
     setCategory(value);
   };
 
+  const onGenerateHandler = async () => {
+    await setImageUrl(await generateImage(finalPrompt));
+  };
+
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newImage: FormCreateStructure = {
       title,
       userPrompt,
-      image,
+      image: imageUrl,
       description,
       category,
     };
@@ -76,26 +91,25 @@ const CreateForm = (): JSX.Element => {
         <Heading color={"picAisso.text"} fontWeight="medium">
           Create an image from text prompt
         </Heading>
-
         <Stack className="create-form__inputs" spacing={3}>
-          <FormLabel htmlFor="subject">Title</FormLabel>
+          <FormLabel htmlFor="title">Title</FormLabel>
           <Input
             className="input__title input"
             type="text"
             placeholder="The title of the image"
             value={title}
             autoComplete="off"
-            aria-label="subject"
+            aria-label="title"
             onChange={handleTitle}
           />
-          <FormLabel htmlFor="subject">Prompt</FormLabel>
+          <FormLabel htmlFor="prompt">Prompt</FormLabel>
           <Input
             className="input__prompt input"
             type="text"
             placeholder="Add a short prompt to feed the AI!"
             value={userPrompt}
             autoComplete="off"
-            aria-label="subject"
+            aria-label="prompt"
             onChange={handleUserPrompt}
           />
 
@@ -146,30 +160,41 @@ const CreateForm = (): JSX.Element => {
                 borderRadius={"10px"}
                 id="category"
                 placeholder={`image-category${index}`}
-                border={category === value ? "5px solid orange" : "none"}
               ></Image>
             );
           })}
         </SimpleGrid>
+        <div className="image-container">
+          <Image
+            boxSize={"280px"}
+            src={imageUrl}
+            className="generated-image"
+            alt="ai image"
+            fallbackSrc="https://placehold.co/250x250/?text=Press-Generate"
+          ></Image>
+        </div>
 
         <div className="button-group">
-          <Button
-            type="submit"
-            className="submit__button"
-            variant="outline"
-            color={"picAisso.button.text"}
-            backgroundColor={"picAisso.button.loginForm"}
-          >
-            Submit
-          </Button>
           <Button
             type="button"
             className="generate__button"
             variant="outline"
             color={"picAisso.button.text"}
+            size={"lg"}
             backgroundColor={"picAisso.button.loginForm"}
+            onClick={() => onGenerateHandler()}
           >
             Generate
+          </Button>
+          <Button
+            type="submit"
+            className="submit__button"
+            variant="outline"
+            color={"picAisso.button.text"}
+            size={"lg"}
+            backgroundColor={"picAisso.button.loginForm"}
+          >
+            Save
           </Button>
         </div>
       </FormControl>

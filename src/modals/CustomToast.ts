@@ -7,7 +7,7 @@ export const CustomToast = () => {
     title: string,
     description: string,
     status: "info" | "warning" | "success" | "error" | "loading" | undefined,
-    position?: "top",
+    position?: "top" | "bottom",
     duration?: 5000,
     isClosable?: true
   ) => {
