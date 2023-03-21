@@ -10,7 +10,7 @@ import {
   Stack,
   Textarea,
 } from "@chakra-ui/react";
-// import { Configuration, OpenAIApi } from "openai";
+
 import { useEffect, useState } from "react";
 import imagesPrompt from "../../media/img/imagesObject";
 import CreateFormStyled from "./CreateFormStyled";
@@ -61,7 +61,7 @@ const CreateForm = (): JSX.Element => {
   };
 
   const onGenerateHandler = async () => {
-    await setImageUrl(await generateImage(finalPrompt));
+    setImageUrl(await generateImage(finalPrompt));
   };
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
