@@ -1,14 +1,11 @@
 export interface FormCreateStructure {
   title: string;
-  subject: string;
-  actionDepicted: string;
-  mood: string;
+  userPrompt: string;
   category: string;
   description: string;
   image: string;
 }
 export interface ImageDataStructure extends FormCreateStructure {
-  prompt: string;
   id: string;
   promptedBy: string;
 }

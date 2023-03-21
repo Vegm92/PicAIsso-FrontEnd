@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as Imagefour0Four } from "../../media/404 Error-rafiki.svg";
+import { ReactComponent as Imagefour0Four } from "../../media/404Error.svg";
 
 const NotFoundPage = (): JSX.Element => {
   return (

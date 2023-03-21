@@ -70,6 +70,7 @@ const useImages = () => {
 
         dispatch(unsetIsLoadingActionCreator());
         dispatch(deleteImagesActionCreator(image));
+        addToast("Deleted", "Image deleted succesfully", "success", "top");
       } catch (error) {
         dispatch(unsetIsLoadingActionCreator());
         dispatch(
@@ -81,7 +82,7 @@ const useImages = () => {
         );
       }
     },
-    [dispatch, token]
+    [addToast, dispatch, token]
   );
 
   const createImage = useCallback(

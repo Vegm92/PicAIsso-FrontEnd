@@ -1,5 +1,9 @@
-import { fireEvent, screen } from "@testing-library/react";
-import { renderWithProviders } from "../../testUtils/testUtils";
+import { act, fireEvent, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import {
+  renderRouterWithProviders,
+  renderWithProviders,
+} from "../../testUtils/testUtils";
 import CreateForm from "./CreateForm";
 
 const mockCreateImageFunction = jest.fn();
@@ -22,8 +26,8 @@ describe("Given a CreateForm component", () => {
       expect(expectedHeaderTitle).toBeInTheDocument();
     });
 
-    test("Then it should show a button with the text 'Submit'", () => {
-      const expectedButtonText = "Submit";
+    test("Then it should show a button with the text 'Generate'", () => {
+      const expectedButtonText = "Generate";
       renderWithProviders(<CreateForm />);
 
       const expectedButton = screen.getByRole("button", {
@@ -31,16 +35,6 @@ describe("Given a CreateForm component", () => {
       });
 
       expect(expectedButton).toBeInTheDocument();
-    });
-
-    test("Then it should show an input textbox with for attribute text 'Subject'", () => {
-      const text = "subject";
-
-      renderWithProviders(<CreateForm />);
-
-      const expectedInput = screen.getByRole("textbox", { name: text });
-
-      expect(expectedInput).toBeInTheDocument();
     });
 
     test("Then it should show a list of options with the text 'Select Mood'", () => {
@@ -51,34 +45,6 @@ describe("Given a CreateForm component", () => {
       const expectedSelect = screen.getByRole("option", { name: text });
 
       expect(expectedSelect).toBeInTheDocument();
-    });
-  });
-
-  describe("When the user writes 'Chameleon' on the subject field", () => {
-    test("Then it should change the value of the subject's field to 'Chameleon'", async () => {
-      const subjectLabel = "subject";
-      const expectedFieldValue = "Chameleon";
-      renderWithProviders(<CreateForm />);
-
-      const submitField = screen.getByLabelText(subjectLabel);
-
-      fireEvent.change(submitField, { target: { value: expectedFieldValue } });
-
-      expect(submitField).toHaveProperty("value", expectedFieldValue);
-    });
-  });
-
-  describe("When the user writes 'resting' on the actionDepicted field", () => {
-    test("Then it should change the value of the actionDepicted field to 'resting'", () => {
-      const actionDepictedLabel = "Action";
-      const expectedFieldValue = "Chameleon";
-      renderWithProviders(<CreateForm />);
-
-      const submitField = screen.getByLabelText(actionDepictedLabel);
-
-      fireEvent.change(submitField, { target: { value: expectedFieldValue } });
-
-      expect(submitField).toHaveProperty("value", expectedFieldValue);
     });
   });
 
@@ -96,6 +62,32 @@ describe("Given a CreateForm component", () => {
     });
   });
 
+  describe("When the user writes 'Chameleon' on the title field", () => {
+    test("Then it should change the value of the title field too 'Chameleon'", async () => {
+      renderRouterWithProviders(<CreateForm />, {});
+
+      const titleInput = screen.getByLabelText("title");
+
+      await act(async () => await userEvent.type(titleInput, "Chameleon"));
+      expect(titleInput).toHaveValue("Chameleon");
+    });
+  });
+
+  describe("When the user writes 'A Chameleon' on the prompt field", () => {
+    test("Then it should change the value of the prompt field to 'A Chameleon'", () => {
+      const promptLabel = "prompt";
+      const expectedFieldValue = "A Chameleon";
+      renderWithProviders(<CreateForm />);
+
+      const submitField = screen.getByLabelText(promptLabel);
+
+      fireEvent.change(submitField, {
+        target: { value: expectedFieldValue },
+      });
+
+      expect(submitField).toHaveProperty("value", expectedFieldValue);
+    });
+  });
   describe("When the user selects 'Cheerful' on the mood field", () => {
     test("Then it should change the value of the mood's field to 'Cheerful'", () => {
       const moodLabel = "Mood";
