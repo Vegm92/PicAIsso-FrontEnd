@@ -19,18 +19,22 @@ import useImages from "../../hooks/useImages/useImages";
 const CreateForm = (): JSX.Element => {
   const { createImage } = useImages();
 
-  const [subject, setSubject] = useState("");
-  const [title] = useState("");
+  const [title, setTitle] = useState("");
+  const [userPrompt, setUserPrompt] = useState("");
   const [description, setDescription] = useState("");
-  const [actionDepicted, setActionDepicted] = useState("");
-  const [mood, setMood] = useState("");
   const [category, setCategory] = useState("");
-  const [image] = useState("");
+  const [image, setImage] = useState("");
 
-  const handleSubject = ({
+  const handleTitle = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
-    setSubject(value);
+    setTitle(value);
+  };
+
+  const handleUserPrompt = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    setUserPrompt(value);
   };
 
   const handleDescription = ({
@@ -39,20 +43,10 @@ const CreateForm = (): JSX.Element => {
     setDescription(value);
   };
 
-  const handleActionDepicted = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setActionDepicted(value);
-  };
-
-  const handleMood = ({
+  const handleCategory = ({
     target: { value },
   }: React.ChangeEvent<HTMLSelectElement>) => {
-    setMood(value);
-  };
-
-  const handleCategory = (selectedCategory: string) => {
-    setCategory(selectedCategory);
+    setCategory(value);
   };
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -60,12 +54,10 @@ const CreateForm = (): JSX.Element => {
 
     const newImage: FormCreateStructure = {
       title,
+      userPrompt,
       image,
-      subject,
       description,
-      actionDepicted,
       category,
-      mood,
     };
 
     await createImage(newImage);
@@ -80,21 +72,31 @@ const CreateForm = (): JSX.Element => {
       action="/send-data-here"
       name="Create image form"
     >
-      <FormControl isRequired className="create-form__subject">
+      <FormControl isRequired className="create-form">
         <Heading color={"picAisso.text"} fontWeight="medium">
           Create an image from text prompt
         </Heading>
 
         <Stack className="create-form__inputs" spacing={3}>
-          <FormLabel htmlFor="subject">Subject</FormLabel>
+          <FormLabel htmlFor="subject">Title</FormLabel>
           <Input
-            className="input__subject input"
+            className="input__title input"
             type="text"
-            placeholder="The main focus of the image"
-            value={subject}
+            placeholder="The title of the image"
+            value={title}
             autoComplete="off"
             aria-label="subject"
-            onChange={handleSubject}
+            onChange={handleTitle}
+          />
+          <FormLabel htmlFor="subject">Prompt</FormLabel>
+          <Input
+            className="input__prompt input"
+            type="text"
+            placeholder="Add a short prompt to feed the AI!"
+            value={userPrompt}
+            autoComplete="off"
+            aria-label="subject"
+            onChange={handleUserPrompt}
           />
 
           <label htmlFor="mood">Mood</label>
@@ -102,8 +104,8 @@ const CreateForm = (): JSX.Element => {
             className="input__selector input"
             placeholder="Select Mood"
             id="mood"
-            value={mood}
-            onChange={handleMood}
+            value={category}
+            onChange={handleCategory}
           >
             <option value="Cheerful"> Cheerful 🌞</option>
             <option value="Eerie"> Eerie 👻</option>
@@ -111,21 +113,10 @@ const CreateForm = (): JSX.Element => {
             <option value="Colorful"> Colorful 🌈</option>
           </Select>
 
-          <label htmlFor="actionDepicted">Action</label>
-          <Input
-            className="input__action input"
-            type="text"
-            placeholder="What is going on in you image?"
-            id="actionDepicted"
-            value={actionDepicted}
-            autoComplete="off"
-            onChange={handleActionDepicted}
-          />
-
           <label htmlFor="description">Description</label>
           <Textarea
             className="input__keywords input"
-            placeholder="Add a short description to feed the AI!"
+            placeholder="Add a short description of the image!"
             id="description"
             value={description}
             onChange={handleDescription}
@@ -155,14 +146,13 @@ const CreateForm = (): JSX.Element => {
                 borderRadius={"10px"}
                 id="category"
                 placeholder={`image-category${index}`}
-                onClick={() => handleCategory(value)}
                 border={category === value ? "5px solid orange" : "none"}
               ></Image>
             );
           })}
         </SimpleGrid>
 
-        <div className="submit">
+        <div className="button-group">
           <Button
             type="submit"
             className="submit__button"

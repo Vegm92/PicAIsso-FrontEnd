@@ -54,7 +54,7 @@ const Card = ({ image }: CardProps): JSX.Element => {
           fontSize="1xl"
           fontStyle={"italic"}
         >
-          prompt: {image.prompt}
+          prompt: {image.userPrompt}
         </Text>
       </Stack>
       <div className="my-collection__buttons buttons">
@@ -65,12 +65,12 @@ const Card = ({ image }: CardProps): JSX.Element => {
             className="buttons__add"
             mt={1}
             h="35px"
-            color="picAisso.text"
+            color="black"
             backgroundColor={"picAisso.button.loginForm"}
             type="button"
             fontSize="2xl"
             leftIcon={
-              <AiOutlineAppstoreAdd color="white" className="fav__icon" />
+              <AiOutlineAppstoreAdd color="black" className="fav__icon" />
             }
           >
             Add

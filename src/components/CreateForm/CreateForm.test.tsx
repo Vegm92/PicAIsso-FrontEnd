@@ -33,16 +33,6 @@ describe("Given a CreateForm component", () => {
       expect(expectedButton).toBeInTheDocument();
     });
 
-    test("Then it should show an input textbox with for attribute text 'Subject'", () => {
-      const text = "subject";
-
-      renderWithProviders(<CreateForm />);
-
-      const expectedInput = screen.getByRole("textbox", { name: text });
-
-      expect(expectedInput).toBeInTheDocument();
-    });
-
     test("Then it should show a list of options with the text 'Select Mood'", () => {
       const text = "Select Mood";
 
@@ -51,34 +41,6 @@ describe("Given a CreateForm component", () => {
       const expectedSelect = screen.getByRole("option", { name: text });
 
       expect(expectedSelect).toBeInTheDocument();
-    });
-  });
-
-  describe("When the user writes 'Chameleon' on the subject field", () => {
-    test("Then it should change the value of the subject's field to 'Chameleon'", async () => {
-      const subjectLabel = "subject";
-      const expectedFieldValue = "Chameleon";
-      renderWithProviders(<CreateForm />);
-
-      const submitField = screen.getByLabelText(subjectLabel);
-
-      fireEvent.change(submitField, { target: { value: expectedFieldValue } });
-
-      expect(submitField).toHaveProperty("value", expectedFieldValue);
-    });
-  });
-
-  describe("When the user writes 'resting' on the actionDepicted field", () => {
-    test("Then it should change the value of the actionDepicted field to 'resting'", () => {
-      const actionDepictedLabel = "Action";
-      const expectedFieldValue = "Chameleon";
-      renderWithProviders(<CreateForm />);
-
-      const submitField = screen.getByLabelText(actionDepictedLabel);
-
-      fireEvent.change(submitField, { target: { value: expectedFieldValue } });
-
-      expect(submitField).toHaveProperty("value", expectedFieldValue);
     });
   });
 
