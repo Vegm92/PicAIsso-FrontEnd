@@ -21,15 +21,27 @@ const useApi = () => {
     async (prompt: string) => {
       try {
         dispatch(setIsLoadingActionCreator());
-        const imageParameters = {
+        const { data } = await openAi.createImage({
           prompt: prompt,
           n: 1,
-        };
-        const response = await openAi.createImage(imageParameters);
-        const urlData = response.data.data[0].url!;
+          size: "256x256",
+          response_format: "b64_json",
+        });
 
+        const dataString = atob(data.data[0].b64_json!);
+        const dataNumbers = new Array(dataString.length);
+        for (let i = 0; i < dataString.length; i++) {
+          dataNumbers[i] = dataString.charCodeAt(i);
+        }
+
+        const dataArray = new Uint8Array(dataNumbers);
+        const dataBlob = new Blob([dataArray], { type: "image/png" });
+
+        const newFile = new File([dataBlob], "image.png", {
+          type: "image/png",
+        });
         dispatch(unsetIsLoadingActionCreator());
-        return urlData;
+        return newFile;
       } catch (error) {
         addToast(
           "Couldn't create!",
@@ -37,7 +49,6 @@ const useApi = () => {
           "error",
           "bottom"
         );
-        return (error as Error).message;
       }
     },
     [addToast, dispatch]

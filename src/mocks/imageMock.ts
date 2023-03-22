@@ -20,7 +20,7 @@ export const imageMockVariation: ImageDataStructure = {
   description: "This is an abstract Chameleon",
   userPrompt: "Draw a colorfull abstract chameleon",
   image: "",
-  id: "qwert12345",
+  id: "qwert123456",
   promptedBy: "whoever",
 };
 export const mockImages: ImagesFromApi = {

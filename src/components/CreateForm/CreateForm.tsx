@@ -28,7 +28,7 @@ const CreateForm = (): JSX.Element => {
 
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [image, setImage] = useState<File>();
 
   useEffect(() => {
     setFinalPrompt(
@@ -60,8 +60,10 @@ const CreateForm = (): JSX.Element => {
     setCategory(value);
   };
 
-  const onGenerateHandler = async () => {
-    setImageUrl(await generateImage(finalPrompt));
+  const onGenerateHandler = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setImage(await generateImage(finalPrompt));
   };
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -70,7 +72,7 @@ const CreateForm = (): JSX.Element => {
     const newImage: FormCreateStructure = {
       title,
       userPrompt,
-      image: imageUrl,
+      image: image!,
       description,
       category,
     };
@@ -167,22 +169,26 @@ const CreateForm = (): JSX.Element => {
         <div className="image-container">
           <Image
             boxSize={"280px"}
-            src={imageUrl}
+            src={
+              image
+                ? URL.createObjectURL(image)
+                : "https://placehold.co/250x250/?text=Press-Generate"
+            }
             className="generated-image"
             alt="ai image"
-            fallbackSrc="https://placehold.co/250x250/?text=Press-Generate"
           ></Image>
         </div>
 
         <div className="button-group">
           <Button
+            aria-label="generate"
             type="button"
             className="generate__button"
             variant="outline"
             color={"picAisso.button.text"}
             size={"lg"}
             backgroundColor={"picAisso.button.loginForm"}
-            onClick={() => onGenerateHandler()}
+            onClick={onGenerateHandler}
           >
             Generate
           </Button>

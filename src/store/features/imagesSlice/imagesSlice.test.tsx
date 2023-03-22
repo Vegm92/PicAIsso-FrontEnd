@@ -20,9 +20,9 @@ const initialImagesState: ImagesFromApi = {
   },
 };
 
-describe("Given a users reducer", () => {
-  describe("When it receives a new state and the action to load events", () => {
-    test("Then it should return a list of 2 events", () => {
+describe("Given a image reducer", () => {
+  describe("When it receives a new state and the action to load images", () => {
+    test("Then it should return a list of 2 images", () => {
       const loadImagesAction = loadImagesActionCreator(images);
 
       const newImages = imagesReducer(initialImagesState, loadImagesAction);
@@ -35,14 +35,15 @@ describe("Given a users reducer", () => {
     });
   });
 
-  describe("When it receives a new state and the action to delete events", () => {
-    test("Then it should return an event", () => {
+  describe("When it receives a new state and the action to delete images", () => {
+    test("Then it should return an image", () => {
       const initialImagesToDelete: ImagesFromApi = {
         ...initialImagesState,
         images: images,
       };
+      const payload = "qwert12345";
+      const deleteImagesAction = deleteImagesActionCreator(payload);
 
-      const deleteImagesAction = deleteImagesActionCreator(images[0].id);
       const result = imagesReducer(initialImagesToDelete, deleteImagesAction);
       const updatedImages = {
         ...initialImagesState,

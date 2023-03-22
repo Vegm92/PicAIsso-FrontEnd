@@ -1,4 +1,3 @@
-import { response } from "msw";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { CustomToast } from "../../modals/CustomToast";

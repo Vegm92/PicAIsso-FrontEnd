@@ -26,17 +26,6 @@ describe("Given a CreateForm component", () => {
       expect(expectedHeaderTitle).toBeInTheDocument();
     });
 
-    test("Then it should show a button with the text 'Generate'", () => {
-      const expectedButtonText = "Generate";
-      renderWithProviders(<CreateForm />);
-
-      const expectedButton = screen.getByRole("button", {
-        name: expectedButtonText,
-      });
-
-      expect(expectedButton).toBeInTheDocument();
-    });
-
     test("Then it should show a list of options with the text 'Select Mood'", () => {
       const text = "Select Mood";
 

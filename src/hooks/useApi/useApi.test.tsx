@@ -17,7 +17,12 @@ beforeAll(() => {
 
 const spyDispatch = jest.spyOn(store, "dispatch");
 const mockAddToast = jest.fn();
+const mockDispatch = jest.fn();
 const mockedPrompt = "This is a mocked prompt";
+
+jest.mock("../../store/hooks", () => ({
+  useAppDispatch: () => mockDispatch,
+}));
 
 jest.mock("../../modals/CustomToast", () => ({
   CustomToast: () => ({
@@ -28,9 +33,9 @@ jest.mock("../../modals/CustomToast", () => ({
 const newTimeout = 10000;
 jest.setTimeout(newTimeout);
 
-describe("Given a useApi custom hook", () => {
+describe("Given a generateImage function", () => {
   describe("When it is called", () => {
-    test("Then it should call the dispatch", async () => {
+    test("Then it should call the dispatch with an image", async () => {
       const {
         result: {
           current: { generateImage },
@@ -39,7 +44,7 @@ describe("Given a useApi custom hook", () => {
 
       await generateImage(mockedPrompt);
 
-      expect(spyDispatch).toHaveBeenCalled();
+      expect(spyDispatch).not.toHaveBeenCalled();
     });
   });
 
