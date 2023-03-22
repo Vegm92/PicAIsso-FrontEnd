@@ -11,7 +11,7 @@ const DeleteButtonStyled = styled.button`
   align-content: center;
   background-color: ${(props) => props.theme.colors.button.loginForm};
   position: absolute;
-  top: 29px;
+  top: 87px;
   right: 15px;
 
   :hover {

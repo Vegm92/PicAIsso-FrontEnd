@@ -1,13 +1,17 @@
-export interface FormCreateStructure {
+export interface BaseImageStructure {
   title: string;
   userPrompt: string;
   category: string;
   description: string;
-  image: string;
 }
-export interface ImageDataStructure extends FormCreateStructure {
+
+export interface FormCreateStructure extends BaseImageStructure {
+  image: Blob;
+}
+export interface ImageDataStructure extends BaseImageStructure {
   id: string;
   promptedBy: string;
+  image: string;
 }
 
 export interface ImagesData {

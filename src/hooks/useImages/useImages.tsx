@@ -1,4 +1,6 @@
+import { response } from "msw";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { CustomToast } from "../../modals/CustomToast";
 import {
   deleteImagesActionCreator,
@@ -16,6 +18,7 @@ import {
   ImagesData,
   ImagesFromApi,
 } from "../../types/imagesTypes";
+import formData from "./formData";
 
 const apiUrl = process.env.REACT_APP_URL_API;
 const pathImages = "/images";
@@ -28,6 +31,7 @@ const useImages = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.user);
   const { addToast } = CustomToast();
+  const navigate = useNavigate();
 
   const getImages = useCallback(async () => {
     try {
@@ -132,21 +136,20 @@ const useImages = () => {
     async (image: FormCreateStructure) => {
       try {
         dispatch(setIsLoadingActionCreator());
-
+        const data = formData(image);
         const response = await fetch(
           `${apiUrl}${pathImages}${createImageEndPoint}`,
           {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` },
-            body: JSON.stringify(image),
+            body: data,
           }
         );
-        if (!response.ok) {
-          throw new Error("The image couldn't be created");
-        }
 
         dispatch(unsetIsLoadingActionCreator());
+        navigate("/");
         addToast("Image Created!", "The image has been created", "success");
+        return response;
       } catch (error) {
         dispatch(unsetIsLoadingActionCreator());
         addToast(
@@ -156,7 +159,7 @@ const useImages = () => {
         );
       }
     },
-    [dispatch, token, addToast]
+    [dispatch, token, navigate, addToast]
   );
 
   return { getImages, deleteImage, createImage, getImageById };
