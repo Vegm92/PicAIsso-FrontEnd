@@ -1,7 +1,6 @@
 import {
   FormCreateStructure,
   ImageDataStructure,
-  ImagesData,
   ImagesDataStructure,
   ImagesFromApi,
 } from "../types/imagesTypes";

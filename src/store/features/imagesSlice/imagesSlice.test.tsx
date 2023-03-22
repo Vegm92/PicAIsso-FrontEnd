@@ -1,18 +1,10 @@
-import {
-  imageMock,
-  imageMockVariation,
-  mockImages,
-} from "../../../mocks/imageMock";
+import { imageMock, imageMockVariation } from "../../../mocks/imageMock";
 import {
   deleteImagesActionCreator,
   imagesReducer,
   loadImagesActionCreator,
 } from "./imagesSlice";
-import {
-  ImagesData,
-  ImagesDataStructure,
-  ImagesFromApi,
-} from "../../../types/imagesTypes";
+import { ImagesDataStructure, ImagesFromApi } from "../../../types/imagesTypes";
 
 const images: ImagesDataStructure = [imageMock, imageMockVariation];
 const initialImagesState: ImagesFromApi = {
