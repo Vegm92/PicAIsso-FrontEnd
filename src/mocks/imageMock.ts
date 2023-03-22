@@ -3,6 +3,7 @@ import {
   ImageDataStructure,
   ImagesData,
   ImagesDataStructure,
+  ImagesFromApi,
 } from "../types/imagesTypes";
 import img from "../media/Chameleon_TradingCard.webp";
 
@@ -34,8 +35,17 @@ export const imageMockVariation: ImageDataStructure = {
   id: "qwert123",
   promptedBy: "whoever",
 };
-export const mockImages: ImagesData = {
+export const mockImages: ImagesFromApi = {
   images: [imageMock, imageMockVariation],
+  image: {
+    id: "",
+    title: "",
+    description: "",
+    category: "",
+    userPrompt: "",
+    image: "",
+    promptedBy: "",
+  },
 };
 
 export const mockListImages: ImagesDataStructure = [

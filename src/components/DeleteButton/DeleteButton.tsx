@@ -16,7 +16,7 @@ const DeleteButton = ({ image }: DeleteButtonProps): JSX.Element => {
       <DeleteButtonStyled
         aria-label="delete"
         type="button"
-        onClick={() => deleteImage(image)}
+        onClick={() => deleteImage(image.id)}
       >
         <AiOutlineDelete size={25} color="black" className="delete__icon" />
       </DeleteButtonStyled>

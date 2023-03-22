@@ -14,4 +14,9 @@ export interface ImagesData {
   images: ImagesDataStructure;
 }
 
+export interface ImagesFromApi {
+  images: ImagesDataStructure;
+  image: ImageDataStructure;
+}
+
 export type ImagesDataStructure = ImageDataStructure[];

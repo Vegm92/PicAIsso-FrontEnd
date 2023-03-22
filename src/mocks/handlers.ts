@@ -29,6 +29,14 @@ export const handlers = [
     `${apiUrl}${routes.images}${routes.getImages}`,
     async (req, res, ctx) => res(ctx.status(200), ctx.json(imageMock))
   ),
+  rest.post(`${apiUrl}${routes.images}${routes.createImage}`, (req, res, ctx) =>
+    res(ctx.status(201), ctx.json({ token: "mockedToken" }))
+  ),
+
+  rest.post(
+    `${apiUrlGenerateImage}${routes.images}${routes.generateImage}`,
+    (req, res, ctx) => res(ctx.status(201), ctx.json({ token: "mockedToken" }))
+  ),
 
   rest.delete(
     `${apiUrl}${routes.images}${routes.deleteImage}${routes.id}`,
@@ -41,13 +49,17 @@ export const errorHandlers = [
     return res(ctx.status(404));
   }),
 
-  rest.get(
-    `${apiUrlGenerateImage}${routes.images}${routes.generateImage}`,
-    (req, res, ctx) => res(ctx.status(404))
-  ),
-
   rest.delete(
     `${apiUrl}${routes.images}${routes.deleteImage}${routes.id}`,
     (req, res, ctx) => res(ctx.status(400))
+  ),
+
+  rest.post(`${apiUrl}${routes.images}${routes.createImage}`, (req, res, ctx) =>
+    res(ctx.status(400), ctx.json({ token: "mockedToken" }))
+  ),
+
+  rest.post(
+    `${apiUrlGenerateImage}${routes.images}${routes.generateImage}`,
+    (req, res, ctx) => res(ctx.status(404))
   ),
 ];
