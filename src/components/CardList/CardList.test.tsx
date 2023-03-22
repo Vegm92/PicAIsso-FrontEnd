@@ -1,4 +1,4 @@
-import { renderWithProviders } from "../../testUtils/testUtils";
+import { renderRouterWithProviders } from "../../testUtils/testUtils";
 import CardList from "./CardList";
 import { mockImages } from "../../mocks/imageMock";
 import { screen } from "@testing-library/react";
@@ -8,9 +8,7 @@ describe("Given a CardList component", () => {
     test("Then it should show a card list with a Card with a header 'Abstract Chameleon'", () => {
       const headerText = "Abstract Chameleon";
 
-      renderWithProviders(<CardList />, {
-        image: { images: mockImages.images },
-      });
+      renderRouterWithProviders(<CardList />, { image: mockImages });
 
       const expectedHeader = screen.getByRole("heading", { name: headerText });
 

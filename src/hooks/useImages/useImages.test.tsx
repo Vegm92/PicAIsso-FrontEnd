@@ -78,19 +78,19 @@ describe("Given a useImages custom hook and a deleteImages function", () => {
         },
       } = renderHook(() => useImages(), { wrapper: Wrapper });
 
-      await deleteImage(imageMock);
+      await deleteImage(imageMock.id);
 
       expect(spyDispatch).toHaveBeenCalledWith(setIsLoadingActionCreator());
     });
 
-    test("Then it should should call the unsetIsLoadingActionCreator discpath", async () => {
+    test("Then it should should call the unsetIsLoadingActionCreator dispatch", async () => {
       const {
         result: {
           current: { deleteImage },
         },
       } = renderHook(() => useImages(), { wrapper: Wrapper });
 
-      await deleteImage(imageMock);
+      await deleteImage(imageMock.id);
 
       expect(spyDispatch).toHaveBeenCalledWith(unsetIsLoadingActionCreator());
     });
@@ -102,10 +102,10 @@ describe("Given a useImages custom hook and a deleteImages function", () => {
         },
       } = renderHook(() => useImages(), { wrapper: Wrapper });
 
-      await deleteImage(imageMock);
+      await deleteImage(imageMock.id);
 
       expect(spyDispatch).toHaveBeenCalledWith(
-        deleteImagesActionCreator(imageMock)
+        deleteImagesActionCreator(imageMock.id)
       );
     });
   });
@@ -122,7 +122,7 @@ describe("Given a useImages custom hook and a deleteImages function", () => {
         },
       } = renderHook(() => useImages(), { wrapper: Wrapper });
 
-      await deleteImage(imageMock);
+      await deleteImage(imageMock.id);
 
       expect(spyDispatch).toHaveBeenCalledWith(
         openModalActionCreator({
@@ -135,8 +135,8 @@ describe("Given a useImages custom hook and a deleteImages function", () => {
   });
 });
 
-describe("Given a useImages custom hook and the createEvent function", () => {
-  describe("When the createEvent function is called", () => {
+describe("Given a useImages custom hook and the createImage function", () => {
+  describe("When the createImage function is called", () => {
     test("Then it should call the openModal action creator", async () => {
       const {
         result: {
@@ -147,6 +147,18 @@ describe("Given a useImages custom hook and the createEvent function", () => {
       await createImage(mockImageCreate);
 
       expect(spyDispatch).toHaveBeenCalled();
+    });
+
+    test("Then it should should call the unsetIsLoadingActionCreator dispatch", async () => {
+      const {
+        result: {
+          current: { createImage },
+        },
+      } = renderHook(() => useImages(), { wrapper: Wrapper });
+
+      await createImage(mockImageCreate);
+
+      expect(spyDispatch).toHaveBeenCalledWith(unsetIsLoadingActionCreator());
     });
   });
 
