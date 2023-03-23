@@ -1,8 +1,10 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { CustomToast } from "../../modals/CustomToast";
 import {
   deleteImagesActionCreator,
   loadImagesActionCreator,
+  loadOneImageActionCreator,
 } from "../../store/features/imagesSlice/imagesSlice";
 import {
   openModalActionCreator,
@@ -12,8 +14,8 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   FormCreateStructure,
-  ImageDataStructure,
   ImagesData,
+  ImagesFromApi,
 } from "../../types/imagesTypes";
 import formData from "./formData";
 
@@ -22,11 +24,13 @@ const pathImages = "/images";
 const getImagesEndpoint = "/";
 const deleteImagesEndpoint = "/delete/";
 const createImageEndPoint = "/create/";
+const detailImageEndpoint = "/detail";
 
 const useImages = () => {
   const dispatch = useAppDispatch();
   const { token } = useAppSelector((state) => state.user);
   const { addToast } = CustomToast();
+  const navigate = useNavigate();
 
   const getImages = useCallback(async () => {
     try {
@@ -50,15 +54,51 @@ const useImages = () => {
     }
   }, [dispatch]);
 
-  const deleteImage = useCallback(
-    async (image: ImageDataStructure) => {
+  const getImageById = useCallback(
+    async (id: string) => {
       try {
         dispatch(setIsLoadingActionCreator());
         const response = await fetch(
-          `${process.env.REACT_APP_URL_API}${pathImages}${deleteImagesEndpoint}${image.id}`,
+          `${apiUrl}${pathImages}${detailImageEndpoint}/${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Can't show the image you are looking for");
+        }
+
+        const { image } = (await response.json()) as ImagesFromApi;
+        dispatch(loadOneImageActionCreator(image));
+        dispatch(unsetIsLoadingActionCreator());
+      } catch (error) {
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            isSuccess: false,
+            message: (error as Error).message,
+          })
+        );
+      }
+    },
+    [dispatch, token]
+  );
+
+  const deleteImage = useCallback(
+    async (id: string) => {
+      try {
+        dispatch(setIsLoadingActionCreator());
+        const response = await fetch(
+          `${process.env.REACT_APP_URL_API}${pathImages}${deleteImagesEndpoint}${id}`,
           {
             method: "DELETE",
             headers: {
+              "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
           }
@@ -68,9 +108,15 @@ const useImages = () => {
           throw new Error("Error while deleting the image");
         }
 
+        dispatch(deleteImagesActionCreator(id));
         dispatch(unsetIsLoadingActionCreator());
-        dispatch(deleteImagesActionCreator(image));
-        addToast("Deleted", "Image deleted succesfully", "success", "top");
+        dispatch(
+          openModalActionCreator({
+            isError: false,
+            isSuccess: true,
+            message: "Image deleted",
+          })
+        );
       } catch (error) {
         dispatch(unsetIsLoadingActionCreator());
         dispatch(
@@ -82,7 +128,7 @@ const useImages = () => {
         );
       }
     },
-    [addToast, dispatch, token]
+    [dispatch, token]
   );
 
   const createImage = useCallback(
@@ -90,7 +136,6 @@ const useImages = () => {
       try {
         dispatch(setIsLoadingActionCreator());
         const data = formData(image);
-
         const response = await fetch(
           `${apiUrl}${pathImages}${createImageEndPoint}`,
           {
@@ -100,12 +145,10 @@ const useImages = () => {
           }
         );
 
-        if (!response.ok) {
-          throw new Error("The image couldn't be created");
-        }
-
         dispatch(unsetIsLoadingActionCreator());
+        navigate("/");
         addToast("Image Created!", "The image has been created", "success");
+        return response;
       } catch (error) {
         dispatch(unsetIsLoadingActionCreator());
         addToast(
@@ -115,10 +158,10 @@ const useImages = () => {
         );
       }
     },
-    [dispatch, token, addToast]
+    [dispatch, token, navigate, addToast]
   );
 
-  return { getImages, deleteImage, createImage };
+  return { getImages, deleteImage, createImage, getImageById };
 };
 
 export default useImages;

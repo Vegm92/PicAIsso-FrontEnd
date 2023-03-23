@@ -29,7 +29,7 @@ describe("Given a DeleteButton component", () => {
 
       await act(async () => await userEvent.click(submitButton));
 
-      expect(mockDeleteImage).toHaveBeenCalledWith(imageMock);
+      expect(mockDeleteImage).toHaveBeenCalledWith(imageMock.id);
     });
   });
 });

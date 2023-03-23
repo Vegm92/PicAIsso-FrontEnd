@@ -1,12 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   ImageDataStructure,
-  ImagesData,
   ImagesDataStructure,
+  ImagesFromApi,
 } from "../../../types/imagesTypes";
 
-const initialState: ImagesData = {
+const initialState: ImagesFromApi = {
   images: [],
+  image: {
+    id: "",
+    title: "",
+    description: "",
+    category: "",
+    userPrompt: "",
+    image: "",
+    promptedBy: "",
+  },
 };
 
 const imagesSlice = createSlice({
@@ -16,26 +25,28 @@ const imagesSlice = createSlice({
     loadImages: (
       currentImageState,
       action: PayloadAction<ImagesDataStructure>
-    ) => ({
+    ): ImagesFromApi => ({
       ...currentImageState,
       images: action.payload,
     }),
 
-    deleteImage: (
+    loadImageById: (
       currentImageState,
       action: PayloadAction<ImageDataStructure>
-    ) => {
-      const newImages = currentImageState.images.filter(
-        (image) => image.id !== action.payload.id
-      );
+    ): ImagesFromApi => ({ ...currentImageState, image: action.payload }),
 
-      return { images: newImages };
-    },
+    deleteImage: (currentImageState, action: PayloadAction<string>) => ({
+      ...currentImageState,
+      images: currentImageState.images.filter(
+        (image) => image.id !== action.payload
+      ),
+    }),
   },
 });
 
 export const {
   loadImages: loadImagesActionCreator,
+  loadImageById: loadOneImageActionCreator,
   deleteImage: deleteImagesActionCreator,
 } = imagesSlice.actions;
 export const imagesReducer = imagesSlice.reducer;

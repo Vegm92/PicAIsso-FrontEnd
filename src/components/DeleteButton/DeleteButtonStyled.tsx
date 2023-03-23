@@ -6,12 +6,12 @@ const DeleteButtonStyled = styled.button`
   color: black;
   font-size: medium;
   border-radius: 5px;
-  margin: 10px;
+  margin: 2.5px;
   padding: 5px;
   align-content: center;
   background-color: ${(props) => props.theme.colors.button.loginForm};
   position: absolute;
-  top: 85px;
+  top: 87px;
   right: 15px;
 
   :hover {
