@@ -34,8 +34,6 @@ For those interested in exploring the backend code of the application, it is ava
 - React Router
 - Axios
 - React Testing Library
-- Vite
-- Vitest
 - Jest
 - MSW
 - Styled Components
