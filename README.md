@@ -40,8 +40,6 @@ Once logged in you could see the Home page with images already present, and the 
 - React Router
 - Axios
 - React Testing Library
-- Vite
-- Vitest
 - Jest
 - MSW
 - Styled Components
