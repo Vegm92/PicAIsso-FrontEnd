@@ -10,21 +10,27 @@ For those interested in exploring the backend code of the application, it is ava
 
 ## Components
 
--Header
--Layout
--Image Card
--Image List Card
--Image Details
--Not found Page
--DeleteButton
--Form
--Loader
--LoginForm
--ProtectedRoute
+- Header
+- Layout
+- Image Card
+- Image List Card
+- Image Details
+- Not found Page
+- DeleteButton
+- Form
+- Loader
+- LoginForm
+- ProtectedRoute
 
 ## Front Production
 
 [https://victor-granda-final-project-front-23.netlify.app/login]
+To login with a mockup user use the following credentials:
+
+- email: fakeuser@gmail.com
+- password: userpassword
+
+Once logged in you could see the Home page with images already present, and the Create page where you could try the AI image generator
 
 ## Technologies Used
 
